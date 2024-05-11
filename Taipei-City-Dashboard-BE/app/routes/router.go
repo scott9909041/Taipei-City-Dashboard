@@ -84,7 +84,11 @@ func configureComponentRoutes() {
 			DELETE("/:id", controllers.DeleteComponent)
 		componentRoutes.
 			PATCH("/:id/chart", controllers.UpdateComponentChartConfig)
-		componentRoutes.PATCH("/:id/map", controllers.UpdateComponentMapConfig)
+		componentRoutes.
+			POST("/map", controllers.CreateComponentMapConfig).
+			GET("/:id/map", controllers.GetComponentMapConfig).
+			PATCH("/:id/map", controllers.UpdateComponentMapConfig).
+			DELETE(":id/map", controllers.DeleteComponentMapConfig)
 	}
 }
 

@@ -99,6 +99,21 @@ func CreateComponent(index string, name string, historyConfig json.RawMessage, m
 	return component, nil
 }
 
+func CreateComponentMapConfig(index string, title string, mapType string, source string, size *string, icon *string, paint *json.RawMessage, property *json.RawMessage) (mapConfig ComponentMap, err error) {
+	mapConfig = ComponentMap{Index: index, Title: title, Type: mapType, Source: source, Size: size, Icon: icon, Paint: paint, Property: property}
+
+	err = DBManager.Create(&mapConfig).Error
+	if err != nil {
+		return mapConfig, err
+	}
+
+	err = DBManager.Where("id = ?", mapConfig.ID).First(&mapConfig).Error
+	if err != nil {
+		return mapConfig, err
+	}
+	return mapConfig, nil
+}
+
 func CreateComponentChartConfig(index string, color pq.StringArray, types pq.StringArray, unit string) (chartConfig ComponentChart, err error) {
 	chartConfig = ComponentChart{Index: index, Color: color, Types: types, Unit: unit}
 
@@ -179,6 +194,14 @@ func GetComponentByID(id int) (component Component, err error) {
 	return component, nil
 }
 
+func GetComponentMapConfigByID(id int) (mapConfig ComponentMap, err error) {
+	err = DBManager.Where("id = ?", id).First(&mapConfig).Error
+	if err != nil {
+		return mapConfig, err
+	}
+	return mapConfig, nil
+}
+
 func UpdateComponent(id int, name string, historyConfig json.RawMessage, mapFilter json.RawMessage, timeFrom string, timeTo string, updateFreq *int64, updateFreqUnit string, source string, shortDesc string, longDesc string, useCase string, links pq.StringArray, contributors pq.StringArray) (component Component, err error) {
 	component = Component{Name: name, HistoryConfig: historyConfig, MapFilter: mapFilter, TimeFrom: timeFrom, TimeTo: timeTo, UpdateFreq: updateFreq, UpdateFreqUnit: updateFreqUnit, Source: source, ShortDesc: shortDesc, LongDesc: longDesc, UseCase: useCase, Links: links, Contributors: contributors, UpdatedAt: time.Now()}
 
@@ -252,4 +275,20 @@ func DeleteComponent(id int, index string, mapConfigIDs pq.Int64Array) (deleteCh
 	}
 
 	return true, true, nil
+}
+
+func DeleteComponentMapConfig(id int)(deleteStatus string, err error) {
+	// 1. Delete the map config
+	err = DBManager.Table("component_maps").Where("id = ?", id).Delete(ComponentMap{}).Error
+	if err != nil {
+		return "delete fail", err
+	}
+
+	// 2. Check if the map config is used by any other component
+	var mapConfigCount int64
+	DBManager.Table("components").Where("map_config_ids @> ARRAY[?]::integer[]", id).Count(&mapConfigCount)
+	if mapConfigCount == 0 {
+		return "delete success", nil
+	}
+	return "delete fail", nil
 }

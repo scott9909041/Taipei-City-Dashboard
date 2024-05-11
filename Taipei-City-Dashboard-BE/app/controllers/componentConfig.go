@@ -71,6 +71,46 @@ func CreateComponent(c *gin.Context) {
 	c.JSON(http.StatusCreated, gin.H{"status": "success", "data": component})
 }
 
+func CreateComponentMapConfig(c *gin.Context) {
+	var mapConfig models.ComponentMap
+
+	// Bind the request body to the map config and make sure it's valid
+	err := c.ShouldBindJSON(&mapConfig)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"status": "error", "message": err.Error()})
+		return
+	}
+
+	// Create the map config
+	mapConfig, err = models.CreateComponentMapConfig(mapConfig.Index, mapConfig.Title, mapConfig.Type, mapConfig.Source, mapConfig.Size, mapConfig.Icon, mapConfig.Paint, mapConfig.Property)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"status": "error", "message": err.Error()})
+		return
+	}
+
+	// Return the map config
+	c.JSON(http.StatusCreated, gin.H{"status": "success", "data": mapConfig})
+}
+
+func GetComponentMapConfig(c *gin.Context) {
+	// Get the component ID from the context
+	id, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"status": "error", "message": "Invalid component ID"})
+		return
+	}
+
+	// Find the map config
+	mapConfig, err := models.GetComponentMapConfigByID(id)
+	if err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"status": "error", "message": "map config not found"})
+		return
+	}
+
+	// Return the map config
+	c.JSON(http.StatusOK, gin.H{"status": "success", "data": mapConfig})
+}
+
 /**
 GetAllComponents retrieves all public components from the database.
 GET /api/v1/component
@@ -254,4 +294,22 @@ func DeleteComponent(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{"status": "success", "chart_deleted": deleteChartStatus, "map_deleted": deleteMapStatus})
+}
+
+func DeleteComponentMapConfig(c *gin.Context) {
+	// 1. Get the map config index from the context
+	id, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"status": "error", "message": "Invalid map config ID"})
+		return
+	}
+
+	// 2. Delete the map config
+	deleteStatus, err := models.DeleteComponentMapConfig(id)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"status": "error", "message": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"status": "success", "deleted": deleteStatus})
 }
