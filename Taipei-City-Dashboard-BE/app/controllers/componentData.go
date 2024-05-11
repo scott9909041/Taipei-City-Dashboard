@@ -11,6 +11,30 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+type DashboardDataMeta struct {
+	Index       string   `json:"index"`
+	Names       []string `json:"names"`
+	ColumnTypes []string `json:"types"`
+}
+
+func CreateComponentChartData(c *gin.Context) {
+	// 1. Get the meta from body
+	meta := DashboardDataMeta{}
+	if err := c.ShouldBindJSON(&meta); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"status": "error", "message": "Invalid meta data"})
+		return
+	}
+
+	// 2. Create the component data in the database
+	query, err := models.CreateComponentChartData(meta.Index, meta.Names, meta.ColumnTypes)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"status": "error", "message": err.Error(), "query": query})
+		return
+	}
+
+	c.JSON(http.StatusCreated, gin.H{"status": "success", "message": "Component data created", "query": query})
+}
+
 /*
 GetComponentChartData retrieves the chart data for a component.
 /api/v1/components/:id/chart

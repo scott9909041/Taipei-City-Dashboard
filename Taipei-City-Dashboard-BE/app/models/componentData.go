@@ -113,6 +113,26 @@ type MapLegendData struct {
 }
 
 /* ----- Handlers ----- */
+func CreateComponentChartData(index string, names []string, columnTypes []string) (query string, error error) {
+	// Create the table for the chart data
+	queryChart := "CREATE TABLE public." + index + " ("
+	// for _, column := range meta.Names, meta.Types {
+	// 	queryChart += column.Name + " " + column.Type + ","
+	// }
+	for i := range names {
+		name:= names[i]
+		columnType := columnTypes[i]
+        queryChart += name + " " + columnType + ","
+    }
+	queryChart = strings.TrimSuffix(queryChart, ",") + ");"
+
+	err := DBDashboard.Exec(queryChart).Error
+	if err != nil {
+		return queryChart, err
+	}
+
+	return queryChart, nil
+}
 
 func GetComponentChartDataQuery(id int) (queryType string, queryString string, err error) {
 	var chartDataQuery ChartDataQuery
