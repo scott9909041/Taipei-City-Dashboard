@@ -32,6 +32,7 @@ function handleClose() {
 	dialogStore.hideAllDialogs();
 	params.value.longitude = null;
 	params.value.latitude = null;
+	pinName.value = "";
 }
 
 const pinName = ref("");
@@ -60,6 +61,7 @@ const handleAddPin = () => {
 	mapStore.addMarker(pinName.value);
 	dialogStore.hideAllDialogs();
 	dialogStore.showNotification("success", "新增地標成功");
+	pinName.value = "";
 	// viewPoint.value = {
 	// 	name: "",
 	// 	coordinates: [],
