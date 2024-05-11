@@ -7,7 +7,7 @@ import { useDialogStore } from "../../store/dialogStore";
 import { useContentStore } from "../../store/contentStore";
 import { storeToRefs } from "pinia";
 import MobileLayers from "../dialogs/MobileLayers.vue";
-import AddMarkToMap from "../dialogs/AddMarkToMap.vue";
+import AddMarkToMap from "../dialogs/AddViewPoint.vue";
 const mapStore = useMapStore();
 const dialogStore = useDialogStore();
 const contentStore = useContentStore();
@@ -109,6 +109,17 @@ onMounted(() => {
 					<span>delete</span>
 				</div>
 			</div>
+			<div v-for="(item, index) in mapStore.viewPoints" :key="`index`">
+				<button @click="mapStore.easeToLocation(item)">
+					{{ item[item.length - 1] }}
+				</button>
+				<div
+					class="mapcontainer-controls-delete"
+					@click="mapStore.removeViewPoint(index)"
+				>
+					<span>delete</span>
+				</div>
+			</div>
 			<!-- <input
 				v-if="mapStore.savedLocations.length < 10"
 				type="text"
@@ -118,7 +129,9 @@ onMounted(() => {
 				@focusout="newSavedLocation = ''"
 				@keypress.enter="handleSubmitNewLocation"
 			/> -->
-			<button @click="dialogStore.showDialog('addMarkToMap')">新增</button>
+			<button @click="dialogStore.showDialog('addMarkToMap')">
+				新增
+			</button>
 		</div>
 	</div>
 	<AddMarkToMap />

@@ -73,6 +73,7 @@ export const useMapStore = defineStore("map", {
 		// Store currently loading layers,
 		loadingLayers: [],
 		markers: [],
+		viewPoints: [],
 	}),
 	getters: {},
 	actions: {
@@ -244,7 +245,7 @@ export const useMapStore = defineStore("map", {
 		},
 		// 2. Call an API to get the layer data
 		fetchLocalGeoJson(map_config) {
-						axios
+			axios
 				.get(`/mapData/${map_config.index}.geojson`)
 				.then((rs) => {
 					this.addGeojsonSource(map_config, rs.data);
@@ -605,13 +606,16 @@ export const useMapStore = defineStore("map", {
 			});
 			this.removePopup();
 		},
-
+		addViewPoint(viewPointArray) {
+			this.viewPoints.push(viewPointArray);
+		},
 		addMarker(coordinates) {
 			const marker = new mapboxGl.Marker()
 				.setLngLat(coordinates)
 				.addTo(this.map);
 			this.markers.push(marker);
 		},
+		fetchViewPoints() {},
 		/* Popup Related Functions */
 		// 1. Adds a popup when the user clicks on a item. The event will be passed in.
 		addPopup(event) {
@@ -709,7 +713,9 @@ export const useMapStore = defineStore("map", {
 				}, 200);
 			}
 		},
-
+		removeViewPoint(index) {
+			this.viewPoints.splice(index, 1);
+		},
 		/* Map Filtering */
 		// 1. Add a filter based on a each map layer's properties (byParam)
 		filterByParam(map_filter, map_configs, xParam, yParam) {

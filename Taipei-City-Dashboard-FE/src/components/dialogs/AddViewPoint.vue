@@ -20,6 +20,13 @@ const params = ref({
 	longitude: null,
 	latitude: null,
 });
+const viewPoint = ref({
+	name: "",
+	coordinates: [],
+	zoom: null,
+	pitch: null,
+	bearing: null,
+});
 
 function handleClose() {
 	dialogStore.hideAllDialogs();
@@ -27,27 +34,57 @@ function handleClose() {
 	params.value.latitude = null;
 }
 
-const handleAddMarker = () => {
-	const { name, longitude, latitude } = params.value;
-	console.log("params.value: ", params.value);
-	if (!name || !longitude || !latitude) {
-		dialogStore.showNotification("fail", "請確實填寫所有欄位");
+const handleAddViewPoint = () => {
+	if (!viewPoint.value.name) {
+		dialogStore.showNotification("fail", "請輸入視角名稱");
 		return;
 	}
-
-	mapStore.addMarker([params.value.longitude, params.value.latitude]);
-	params.value.longitude = null;
-	params.value.latitude = null;
+	const { lng, lat } = mapStore.map.getCenter();
+	const zoom = mapStore.map.getZoom();
+	const pitch = mapStore.map.getPitch();
+	const bearing = mapStore.map.getBearing();
+	viewPoint.value.zoom = zoom;
+	viewPoint.value.pitch = pitch;
+	viewPoint.value.bearing = bearing;
+	viewPoint.value.coordinates = [lng, lat];
+	const viewPointArray = [
+		[lng, lat],
+		zoom,
+		pitch,
+		bearing,
+		viewPoint.value.name,
+	];
+	mapStore.addViewPoint(viewPointArray);
 	dialogStore.hideAllDialogs();
-	dialogStore.showNotification("success", "新增地標成功");
+	dialogStore.showNotification("success", "新增視角成功");
+	viewPoint.value = {
+		name: "",
+		coordinates: [],
+		zoom: null,
+		pitch: null,
+		bearing: null,
+	};
+	// mapStore.easeToLocation(viewPointArray);
 };
 </script>
 
 <template>
 	<DialogContainer dialog="addMarkToMap" @on-close="handleClose">
 		<div class="login add-mark-to-map">
-			<h1 class="title">建立地標</h1>
-			<label for="marker-name">地標名稱：</label>
+			<h1 class="title">建立視角</h1>
+
+			<div class="content">
+				<label for="view-point-name">視角名稱：</label>
+				<input
+					v-model="viewPoint.name"
+					type="text"
+					id="view-point-name"
+					name="view-point-name"
+					placeholder="請輸入視角名稱"
+					required
+				/>
+			</div>
+			<!-- <label for="marker-name">地標名稱：</label>
 			<input
 				v-model="params.name"
 				type="text"
@@ -80,9 +117,11 @@ const handleAddMarker = () => {
 				step="any"
 				placeholder="請輸入有效的緯度，範圍在-90到90之間"
 				required
-			/>
+			/> -->
+			<!-- <div class="content">是否儲存當前視角？</div> -->
+
 			<div class="btn-box">
-				<button @click.prevent="handleAddMarker">確認</button>
+				<button @click.prevent="handleAddViewPoint">確認</button>
 			</div>
 		</div>
 	</DialogContainer>
@@ -161,6 +200,13 @@ const handleAddMarker = () => {
 	}
 }
 .add-mark-to-map {
+	// text-align: center;
+	label {
+		text-align: center;
+	}
+	.content {
+		margin: 30px 0 30px;
+	}
 	h1 {
 		text-align: center;
 	}
