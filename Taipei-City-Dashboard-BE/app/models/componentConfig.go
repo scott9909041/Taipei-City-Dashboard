@@ -84,6 +84,9 @@ func CreateComponent(index string, name string, historyConfig json.RawMessage, m
 	if queryType == "" {
 		queryType = "map_legend"
 	}
+	if mapConfigIDs == nil {
+		mapConfigIDs = []int64{}
+	}
 	component = Component{Index: index, Name: name, HistoryConfig: historyConfig, MapConfigIDs: mapConfigIDs, MapFilter: mapFilter, TimeFrom: timeFrom, TimeTo: timeTo, UpdateFreq: updateFreq, UpdateFreqUnit: updateFreqUnit, Source: source, ShortDesc: shortDesc, LongDesc: longDesc, UseCase: useCase, Links: links, Contributors: contributors, CreatedAt: time.Now(), UpdatedAt: time.Now(), QueryType: queryType, QueryChart: string("select * from " + index)}
 
 	// 創建新的資料表
