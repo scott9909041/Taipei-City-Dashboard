@@ -1,4 +1,3 @@
- 
 /* eslint-disable indent */
 
 // Developed by Taipei Urban Intelligence Center 2023-2024
@@ -175,6 +174,8 @@ export const useAdminStore = defineStore("admin", {
 						2
 					);
 				});
+			} else {
+				this.currentComponent.map_config = [];
 			}
 			if (this.currentComponent.map_filter !== null) {
 				this.currentComponent.map_filter = JSON.stringify(
@@ -207,14 +208,27 @@ export const useAdminStore = defineStore("admin", {
 				this.currentComponent.map_config.forEach((map_config) => {
 					map_config.paint = JSON.parse(map_config.paint);
 					map_config.property = JSON.parse(map_config.property);
+					if (map_config.geojson) {
+						map_config.geojson = JSON.parse(map_config.geojson);
+					}
 				});
 			}
 			const map_config = JSON.parse(
 				JSON.stringify(this.currentComponent.map_config)
 			);
+			console.log(
+				"this.currentComponent.delete_map_config",
+				this.currentComponent.delete_map_config
+			);
+			const delete_map_config = this.currentComponent.delete_map_config
+				? JSON.parse(
+						JSON.stringify(this.currentComponent.delete_map_config)
+				  )
+				: [];
 
 			delete this.currentComponent.chart_config;
 			delete this.currentComponent.map_config;
+			delete this.currentComponent.delete_map_config;
 
 			const componentId = this.currentComponent.id;
 			const component_config = JSON.parse(
@@ -226,17 +240,46 @@ export const useAdminStore = defineStore("admin", {
 			// 3.3 Update component component config (incl. history config)
 			await http.patch(`/component/${componentId}`, component_config);
 
-			// 3.4 Update component map config
+			// 3.4 Create or update component map config
 			if (map_config[0] !== null) {
 				for (let i = 0; i < map_config.length; i++) {
-					await http.patch(
-						`/component/${map_config[i].id}/map`,
-						map_config[i]
-					);
+					if (map_config[i].id) {
+						await http.patch(
+							`/component/${map_config[i].id}/map`,
+							map_config[i]
+						);
+					} else {
+						await http.post(`/component/${componentId}/map`, {
+							...map_config[i],
+							componentId,
+						});
+					}
 				}
 			}
+
+			// 3.5 Delete map config
+			for (const config in delete_map_config) {
+				await http.delete(`/component/${componentId}/map/${config.id}`);
+			}
+
 			dialogStore.showNotification("success", "組件更新成功");
 			this.getPublicComponents(params);
+		},
+
+		addMap(params) {
+			if (!this.currentComponent.map_config) {
+				this.currentComponent.map_config = [];
+			}
+			this.currentComponent.map_config.push(params.map_config);
+		},
+
+		removeMap(params) {
+			if (!this.currentComponent.delete_map_config) {
+				this.currentComponent.delete_map_config = [];
+			}
+			this.currentComponent.delete_map_config.push(
+				this.currentComponent.map_config.splice(params.index, 1)
+			);
 		},
 
 		/* Issue */

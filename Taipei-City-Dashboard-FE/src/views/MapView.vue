@@ -47,6 +47,7 @@ function handleOpenSettings() {
 
 // Open and closes the component as well as communicates to the mapStore to turn on and off map layers
 function handleToggle(value, map_config) {
+	console.log("here", map_config);
 	if (!map_config[0]) {
 		if (value) {
 			dialogStore.showNotification(

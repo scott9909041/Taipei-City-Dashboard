@@ -240,30 +240,31 @@ export const useMapStore = defineStore("map", {
 		/* Adding Map Layers */
 		// 1. Passes in the map_config (an Array of Objects) of a component and adds all layers to the map layer list
 		addToMapLayerList(map_config) {
-			map_config.forEach((element) => {
-				let mapLayerId = `${element.index}-${element.type}`;
+			map_config.forEach((config) => {
+				let mapLayerId = `${config.index}-${config.type}`;
 				// 1-1. If the layer exists, simply turn on the visibility and add it to the visible layers list
-				if (
-					this.currentLayers.find((element) => element === mapLayerId)
-				) {
+				if (this.currentLayers.find((layer) => layer === mapLayerId)) {
 					this.loadingLayers.push("rendering");
 					this.turnOnMapLayerVisibility(mapLayerId);
 					if (
 						!this.currentVisibleLayers.find(
-							(element) => element === mapLayerId
+							(layer) => layer === mapLayerId
 						)
 					) {
 						this.currentVisibleLayers.push(mapLayerId);
 					}
 					return;
 				}
-				let appendLayer = { ...element };
+				let appendLayer = { ...config };
 				appendLayer.layerId = mapLayerId;
 				// 1-2. If the layer doesn't exist, call an API to get the layer data
 				this.loadingLayers.push(appendLayer.layerId);
-				if (element.source === "geojson") {
+				console.log("hererere", config);
+				if (config.geojson) {
+					this.addGeojsonSource(config, config.geojson);
+				} else if (config.source === "geojson") {
 					this.fetchLocalGeoJson(appendLayer);
-				} else if (element.source === "raster") {
+				} else if (config.source === "raster") {
 					this.addRasterSource(appendLayer);
 				}
 			});
@@ -277,6 +278,15 @@ export const useMapStore = defineStore("map", {
 				})
 				.catch((e) => console.error(e));
 		},
+		// 2-1. Call backend API to fetch layer data
+		// fetchDBGeoJson(map_config) {
+		// 	axios
+		// 		.get(`/mapData/${map_config.index}.geojson`)
+		// 		.then((rs) => {
+		// 			this.addGeojsonSource(map_config, rs.data);
+		// 		})
+		// 		.catch((e) => console.error(e));
+		// },
 		// 3-1. Add a local geojson as a source in mapbox
 		addGeojsonSource(map_config, data) {
 			if (!["voronoi", "isoline"].includes(map_config.type)) {
@@ -665,7 +675,7 @@ export const useMapStore = defineStore("map", {
 						"地標刪除成功"
 					);
 					marker.remove();
-					this.marker.remove()
+					this.marker.remove();
 				});
 			});
 			marker

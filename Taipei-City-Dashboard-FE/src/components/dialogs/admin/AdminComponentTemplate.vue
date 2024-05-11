@@ -1,48 +1,13 @@
 <!-- Developed by Taipei Urban Intelligence Center 2023-2024-->
-
 <script setup>
 import http from "../../../router/axios";
-
 import { ref, defineProps } from "vue";
-import { storeToRefs } from "pinia";
-import { DashboardComponent } from "city-dashboard-component";
 import { useDialogStore } from "../../../store/dialogStore";
 import { useAdminStore } from "../../../store/adminStore";
-
 import DialogContainer from "../DialogContainer.vue";
 import InputTags from "../../utilities/forms/InputTags.vue";
-import SelectButtons from "../../utilities/forms/SelectButtons.vue";
-import HistoryChart from "../../charts/HistoryChart.vue";
 
-import { chartsPerDataType } from "../../../assets/configs/apexcharts/chartTypes";
-import { timeTerms } from "../../../assets/configs/AllTimes";
-import { mapTypes } from "../../../assets/configs/mapbox/mapConfig";
-
-// 整體 0
-// map 1
 const currentTab = ref(0);
-const temp = ref({
-	index: "patrol_criminalcase",
-	name: "刑事統計",
-	history_config: null,
-	map_config: [null],
-	map_filter: null,
-	time_from: "static",
-	time_to: null,
-	update_freq: 1,
-	update_freq_unit: "month",
-	source: "警察局",
-	short_desc: "顯示近兩年每月的刑案統計資訊",
-	long_desc:
-		"顯示近兩年每月的刑案統計資訊，資料來源為台北市主計處開放資料，每月更新。",
-	use_case:
-		"藉由掌握台北市刑事案件近2年的統計資訊，我們可以瞭解案件的增減趨勢及相關特徵，有助於制定更有效的治安策略。",
-	links: [
-		"https://data.taipei/dataset/detail?id=dc7e246a-a88e-42f8-8cd6-9739209af774",
-	],
-	contributors: ["tuic"],
-	query_type: "time",
-});
 const params = ref({
 	index: "",
 	name: "",
@@ -59,16 +24,12 @@ const params = ref({
 	use_case: "",
 	links: [],
 	contributors: [],
-	query_type: "time",
+	query_type: "map_legend",
 });
 
 const dialogStore = useDialogStore();
 const adminStore = useAdminStore();
-
 const props = defineProps(["searchParams"]);
-
-const { currentComponent } = storeToRefs(adminStore);
-const currentSettings = ref("all");
 const tempInputStorage = ref({
 	link: "",
 	contributor: "",
@@ -99,7 +60,7 @@ function handleClose() {
 		use_case: "",
 		links: [],
 		contributors: [],
-		query_type: "time",
+		query_type: "map_legend",
 	};
 }
 
@@ -118,13 +79,12 @@ const handleSubmit = async () => {
 		!index ||
 		!name ||
 		!source ||
-		!update_freq ||
+		(!update_freq && update_freq !== 0) ||
 		!update_freq_unit ||
 		!short_desc ||
 		!long_desc ||
 		!use_case
 	) {
-		console.log(params.value);
 		dialogStore.showNotification(
 			"fail",
 			"新建失敗，請確實填寫所有必填欄位"
