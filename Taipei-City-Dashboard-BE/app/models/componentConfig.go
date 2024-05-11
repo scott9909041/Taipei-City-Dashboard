@@ -14,7 +14,7 @@ import (
 
 // Component is the model for the components table.
 type Component struct {
-	ID             int         `json:"id" gorm:"column:id;autoincrement;primaryKey"`
+	ID             int             `json:"id" gorm:"column:id;autoincrement;primaryKey"`
 	Index          string          `json:"index" gorm:"column:index;type:varchar;unique;not null"     `
 	Name           string          `json:"name" gorm:"column:name;type:varchar;not null"`
 	HistoryConfig  json.RawMessage `json:"history_config" gorm:"column:history_config;type:json"`
@@ -50,6 +50,7 @@ type ComponentMap struct {
 	Icon     *string          `json:"icon"       gorm:"column:icon;type:varchar"`
 	Paint    *json.RawMessage `json:"paint" gorm:"column:paint;type:json"`
 	Property *json.RawMessage `json:"property" gorm:"column:property;type:json"`
+	Geojson  *json.RawMessage `json:"geojson" gorm:"column:geojson;type:json"`
 }
 
 // ComponentChart is the model for the component_charts table.
@@ -104,8 +105,8 @@ func CreateComponent(index string, name string, historyConfig json.RawMessage, m
 	return component, nil
 }
 
-func CreateComponentMapConfig(index string, title string, mapType string, source string, size *string, icon *string, paint *json.RawMessage, property *json.RawMessage) (mapConfig ComponentMap, err error) {
-	mapConfig = ComponentMap{Index: index, Title: title, Type: mapType, Source: source, Size: size, Icon: icon, Paint: paint, Property: property}
+func CreateComponentMapConfig(index string, title string, mapType string, source string, size *string, icon *string, paint *json.RawMessage, property *json.RawMessage, geojson *json.RawMessage) (mapConfig ComponentMap, err error) {
+	mapConfig = ComponentMap{Index: index, Title: title, Type: mapType, Source: source, Size: size, Icon: icon, Paint: paint, Property: property, Geojson: geojson}
 
 	err = DBManager.Create(&mapConfig).Error
 	if err != nil {
@@ -207,6 +208,18 @@ func GetComponentMapConfigByID(id int) (mapConfig ComponentMap, err error) {
 	return mapConfig, nil
 }
 
+func UpdateComponentMapConfigIDs(componentID int, mapConfigIDs pq.Int64Array) (component Component, err error) {
+	err = DBManager.Table("components").Where("id = ?", componentID).Update("map_config_ids", mapConfigIDs).Error
+	if err != nil {
+		return component, err
+	}
+	err = DBManager.Where("id = ?", componentID).First(&component).Error
+	if err != nil {
+		return component, err
+	}
+	return component, nil
+}
+
 func UpdateComponent(id int, name string, historyConfig json.RawMessage, mapFilter json.RawMessage, timeFrom string, timeTo string, updateFreq *int64, updateFreqUnit string, source string, shortDesc string, longDesc string, useCase string, links pq.StringArray, contributors pq.StringArray) (component Component, err error) {
 	component = Component{Name: name, HistoryConfig: historyConfig, MapFilter: mapFilter, TimeFrom: timeFrom, TimeTo: timeTo, UpdateFreq: updateFreq, UpdateFreqUnit: updateFreqUnit, Source: source, ShortDesc: shortDesc, LongDesc: longDesc, UseCase: useCase, Links: links, Contributors: contributors, UpdatedAt: time.Now()}
 
@@ -282,7 +295,7 @@ func DeleteComponent(id int, index string, mapConfigIDs pq.Int64Array) (deleteCh
 	return true, true, nil
 }
 
-func DeleteComponentMapConfig(id int)(deleteStatus string, err error) {
+func DeleteComponentMapConfig(id int) (deleteStatus string, err error) {
 	// 1. Delete the map config
 	err = DBManager.Table("component_maps").Where("id = ?", id).Delete(ComponentMap{}).Error
 	if err != nil {

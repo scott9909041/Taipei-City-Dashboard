@@ -39,7 +39,8 @@ type componentQuery struct {
 	SearchByName  string `form:"searchbyname"`
 }
 
-/**
+
+/*
 CreateComponent creates a new component in the database.
 POST /api/v1/component
 */
@@ -54,7 +55,7 @@ func CreateComponent(c *gin.Context) {
 	}
 
 	// Create the component
-	component, err = models.CreateComponent(component.Index, component.Name, component.HistoryConfig, component.MapConfigIDs, component.MapFilter , component.TimeFrom, component.TimeTo, component.UpdateFreq, component.UpdateFreqUnit, component.Source, component.ShortDesc, component.LongDesc, component.UseCase, component.Links, component.Contributors, component.QueryType)
+	component, err = models.CreateComponent(component.Index, component.Name, component.HistoryConfig, component.MapConfigIDs, component.MapFilter, component.TimeFrom, component.TimeTo, component.UpdateFreq, component.UpdateFreqUnit, component.Source, component.ShortDesc, component.LongDesc, component.UseCase, component.Links, component.Contributors, component.QueryType)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"status": "error", "message": err.Error()})
 		return
@@ -71,6 +72,52 @@ func CreateComponent(c *gin.Context) {
 	c.JSON(http.StatusCreated, gin.H{"status": "success", "data": component})
 }
 
+func CreateMapConfigWithComponentID(c *gin.Context) {
+	var component models.Component
+	var mapConfig models.ComponentMap
+
+	componentID, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"status": "error", "message": "Invalid component ID"})
+		return
+	}
+
+	err = c.ShouldBindJSON(&mapConfig)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"status": "error", "message": err.Error()})
+		return
+	}
+
+	// 建立 map config
+	mapConfig, err = models.CreateComponentMapConfig(mapConfig.Index, mapConfig.Title, mapConfig.Type, mapConfig.Source, mapConfig.Size, mapConfig.Icon, mapConfig.Paint, mapConfig.Property, mapConfig.Geojson)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"status": "error", "message": err.Error()})
+		return
+	}
+
+	component, err = models.GetComponentByID(componentID)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"status": "error", "message": err.Error()})
+		return
+	}
+	newMapConfigIDs := []int64{mapConfig.ID}
+	for _, id := range component.MapConfigIDs {
+		if id != mapConfig.ID {
+			newMapConfigIDs = append(newMapConfigIDs, id)
+		}
+	}
+
+	// component 新增 map config id
+	component, err = models.UpdateComponentMapConfigIDs(componentID, newMapConfigIDs)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"status": "error", "message": err.Error()})
+		return
+	}
+
+	// 回傳 map config
+	c.JSON(http.StatusCreated, gin.H{"status": "success", "data": mapConfig, "component": component})
+}
+
 func CreateComponentMapConfig(c *gin.Context) {
 	var mapConfig models.ComponentMap
 
@@ -82,7 +129,7 @@ func CreateComponentMapConfig(c *gin.Context) {
 	}
 
 	// Create the map config
-	mapConfig, err = models.CreateComponentMapConfig(mapConfig.Index, mapConfig.Title, mapConfig.Type, mapConfig.Source, mapConfig.Size, mapConfig.Icon, mapConfig.Paint, mapConfig.Property)
+	mapConfig, err = models.CreateComponentMapConfig(mapConfig.Index, mapConfig.Title, mapConfig.Type, mapConfig.Source, mapConfig.Size, mapConfig.Icon, mapConfig.Paint, mapConfig.Property, mapConfig.Geojson)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"status": "error", "message": err.Error()})
 		return
@@ -111,7 +158,8 @@ func GetComponentMapConfig(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"status": "success", "data": mapConfig})
 }
 
-/**
+/*
+*
 GetAllComponents retrieves all public components from the database.
 GET /api/v1/component
 */
