@@ -137,8 +137,10 @@ const handleSubmit = async () => {
 		console.log("createRes: ", createRes);
 		const getRes = await http.get(`/component/${createRes.data.data.id}`);
 		console.log("getRes: ", getRes);
-		adminStore.currentComponent = getRes.data.data;
+		adminStore.getComponentData(getRes.data.data);
 		dialogStore.showNotification("success", "新建組建成功");
+		dialogStore.hideAllDialogs();
+		dialogStore.showDialog("adminComponentSettings");
 	} catch (error) {
 		console.error(error);
 	}
