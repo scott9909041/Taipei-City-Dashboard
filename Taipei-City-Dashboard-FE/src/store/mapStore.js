@@ -38,6 +38,23 @@ import { calculateGradientSteps } from "../assets/configs/mapbox/arcGradient";
 import { voronoi } from "../assets/utilityFunctions/voronoi.js";
 import { interpolation } from "../assets/utilityFunctions/interpolation.js";
 import { marchingSquare } from "../assets/utilityFunctions/marchingSquare.js";
+const geojson = {
+	type: "FeatureCollection",
+	features: [
+		{
+			type: "Feature",
+			properties: {
+				message: "Foo",
+				imageId: 1011,
+				iconSize: [60, 60],
+			},
+			geometry: {
+				type: "Point",
+				coordinates: [-66.324462, -16.024695],
+			},
+		},
+	],
+};
 
 export const useMapStore = defineStore("map", {
 	state: () => ({
@@ -55,6 +72,7 @@ export const useMapStore = defineStore("map", {
 		savedLocations: savedLocations,
 		// Store currently loading layers,
 		loadingLayers: [],
+		markers: [],
 	}),
 	getters: {},
 	actions: {
@@ -226,6 +244,7 @@ export const useMapStore = defineStore("map", {
 		},
 		// 2. Call an API to get the layer data
 		fetchLocalGeoJson(map_config) {
+			console.log("here");
 			axios
 				.get(`/mapData/${map_config.index}.geojson`)
 				.then((rs) => {
@@ -235,6 +254,8 @@ export const useMapStore = defineStore("map", {
 		},
 		// 3-1. Add a local geojson as a source in mapbox
 		addGeojsonSource(map_config, data) {
+			console.log("map_config: ", map_config);
+			console.log("data: ", data);
 			if (!["voronoi", "isoline"].includes(map_config.type)) {
 				this.map.addSource(`${map_config.layerId}-source`, {
 					type: "geojson",
@@ -588,6 +609,12 @@ export const useMapStore = defineStore("map", {
 			this.removePopup();
 		},
 
+		addMarker(coordinates) {
+			const marker = new mapboxGl.Marker()
+				.setLngLat(coordinates)
+				.addTo(this.map);
+			this.markers.push(marker);
+		},
 		/* Popup Related Functions */
 		// 1. Adds a popup when the user clicks on a item. The event will be passed in.
 		addPopup(event) {
@@ -598,6 +625,8 @@ export const useMapStore = defineStore("map", {
 					layers: this.currentVisibleLayers,
 				}
 			);
+			console.log("event: ", event);
+			console.log("clickFeatureDatas: ", clickFeatureDatas);
 			// Return if there is no info in the click
 			if (!clickFeatureDatas || clickFeatureDatas.length === 0) {
 				return;
@@ -658,6 +687,7 @@ export const useMapStore = defineStore("map", {
 		// 2. Zoom to a location
 		// [[lng, lat], zoom, pitch, bearing, savedLocationName]
 		easeToLocation(location_array) {
+			console.log("location_array: ", location_array);
 			this.map.easeTo({
 				center: location_array[0],
 				zoom: location_array[1],
