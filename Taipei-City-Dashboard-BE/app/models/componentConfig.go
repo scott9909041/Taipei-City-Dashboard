@@ -14,7 +14,7 @@ import (
 
 // Component is the model for the components table.
 type Component struct {
-	ID             int64           `json:"id" gorm:"column:id;autoincrement;primaryKey"`
+	ID             int         `json:"id" gorm:"column:id;autoincrement;primaryKey"`
 	Index          string          `json:"index" gorm:"column:index;type:varchar;unique;not null"     `
 	Name           string          `json:"name" gorm:"column:name;type:varchar;not null"`
 	HistoryConfig  json.RawMessage `json:"history_config" gorm:"column:history_config;type:json"`
@@ -86,11 +86,13 @@ func CreateComponent(index string, name string, historyConfig json.RawMessage, m
 	}
 	component = Component{Index: index, Name: name, HistoryConfig: historyConfig, MapConfigIDs: mapConfigIDs, MapFilter: mapFilter, TimeFrom: timeFrom, TimeTo: timeTo, UpdateFreq: updateFreq, UpdateFreqUnit: updateFreqUnit, Source: source, ShortDesc: shortDesc, LongDesc: longDesc, UseCase: useCase, Links: links, Contributors: contributors, CreatedAt: time.Now(), UpdatedAt: time.Now(), QueryType: queryType, QueryChart: string("select * from " + index)}
 
+	// 創建新的資料表
 	err = DBDashboard.Exec("CREATE TABLE IF NOT EXISTS public." + index + " (id SERIAL PRIMARY KEY)").Error
 	if err != nil {
 		return component, err
 	}
 
+	// Create and return the new data
 	err = DBManager.Create(&component).Error
 	if err != nil {
 		return component, err
