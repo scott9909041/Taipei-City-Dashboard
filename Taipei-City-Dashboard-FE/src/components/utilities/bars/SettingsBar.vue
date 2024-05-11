@@ -3,6 +3,7 @@
 <!-- Adding new components and settings is disabled in public dashboards and the mobile version -->
 
 <script setup>
+import { useAuthStore } from "../../../store/authStore";
 import { useContentStore } from "../../../store/contentStore";
 import { useDialogStore } from "../../../store/dialogStore";
 import { storeToRefs } from "pinia";
@@ -13,7 +14,9 @@ import AddPin from "../../dialogs/AddPin.vue";
 const contentStore = useContentStore();
 const dialogStore = useDialogStore();
 const mapStore = useMapStore();
+const authStore = useAuthStore();
 const { tempMarkerCoordinates } = storeToRefs(mapStore);
+const { user } = storeToRefs(authStore);
 
 function handleOpenSettings() {
 	contentStore.editDashboard = JSON.parse(
@@ -56,11 +59,19 @@ function handleOpenSettings() {
 		</div>
 		<!-- tempPin: {{ tempPin }} <br />
 		map: {{ map }} <br /> -->
-
+		<!-- {{ !tempMarkerCoordinates?.lat }} -->
+		<!-- {{ user }} -->
 		<button
+			v-if="user?.user_id"
 			class="add-pin"
-			:disable="tempMarkerCoordinates === null"
+			:disabled="!tempMarkerCoordinates?.lat"
 			@click="dialogStore.showDialog('addPin')"
+			:style="{
+				background: !tempMarkerCoordinates?.lat
+					? 'rgb(20, 58, 67)'
+					: 'rgb(63, 177, 206)',
+				cursor: !tempMarkerCoordinates?.lat ? 'not-allowed' : 'pointer',
+			}"
 		>
 			建立地標
 		</button>
@@ -71,10 +82,10 @@ function handleOpenSettings() {
 <style scoped lang="scss">
 .settingsbar {
 	.add-pin {
-		cursor: pointer;
+		// cursor: pointer;
 		padding: 0px 4px;
 		border-radius: 4px;
-		background-color: rgb(63, 177, 206);
+		// background-color: rgb(63, 177, 206);
 		// &:disabled {
 		// 	background-color: rgb(20, 58, 67);
 		// }

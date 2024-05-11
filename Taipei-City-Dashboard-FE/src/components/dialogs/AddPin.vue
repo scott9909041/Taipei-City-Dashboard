@@ -34,11 +34,13 @@ function handleClose() {
 	params.value.latitude = null;
 }
 
+const pinName = ref("");
+
 const handleAddPin = () => {
-	// if (!viewPoint.value.name) {
-	// 	dialogStore.showNotification("fail", "請輸入視角名稱");
-	// 	return;
-	// }
+	if (!pinName.value) {
+		dialogStore.showNotification("fail", "請輸入地標名稱");
+		return;
+	}
 	// const { lng, lat } = mapStore.map.getCenter();
 	// const zoom = mapStore.map.getZoom();
 	// const pitch = mapStore.map.getPitch();
@@ -55,7 +57,7 @@ const handleAddPin = () => {
 	// 	viewPoint.value.name,
 	// ];
 	// mapStore.addViewPoint(viewPointArray);
-	mapStore.addMarker()
+	mapStore.addMarker(pinName.value);
 	dialogStore.hideAllDialogs();
 	dialogStore.showNotification("success", "新增地標成功");
 	// viewPoint.value = {
@@ -72,19 +74,19 @@ const handleAddPin = () => {
 <template>
 	<DialogContainer dialog="addPin" @on-close="handleClose">
 		<div class="login add-mark-to-map">
-			<h1 class="title">建立視角</h1>
+			<h1 class="title">建立地標</h1>
 
 			<div class="content">
-				<!-- <label for="view-point-name">視角名稱：</label>
+				<label for="view-point-name">地標名稱：</label>
 				<input
-					v-model="viewPoint.name"
+					v-model="pinName"
 					type="text"
 					id="view-point-name"
 					name="view-point-name"
-					placeholder="請輸入視角名稱"
+					placeholder="請輸入地標名稱"
 					required
-				/> -->
-				是否要建立地標？
+				/>
+				<!-- 是否要建立地標？ -->
 			</div>
 			<!-- <label for="marker-name">地標名稱：</label>
 			<input
@@ -202,7 +204,7 @@ const handleAddPin = () => {
 	}
 }
 .add-mark-to-map {
-	text-align: center;
+	// text-align: center;
 	label {
 		text-align: center;
 	}

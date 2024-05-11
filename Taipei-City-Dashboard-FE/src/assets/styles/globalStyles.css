@@ -165,3 +165,35 @@ td:last-child {
 		transform: rotate(360deg);
 	}
 }
+
+/* .mapboxgl-popup-content {
+	width: auto !important;
+	height: 25px;
+	display: flex;
+	align-items: center;
+}
+.popup-for-pin {
+	position: relative;
+} */
+
+html .mapboxgl-popup {
+	max-width: 260px !important;
+	/* height: 25px; */
+	min-width: 100px !important;
+}
+
+html .mapboxgl-popup .popup-for-pin {
+	/* position: relative;
+	height: 100%;
+	left: 0;
+	top: 0; */
+	margin-top: 4px;
+	margin-left: 4px;
+	span {
+	}
+}
+
+html .mapboxgl-popup .delete-pin {
+	position: absolute;
+	right: 4px;
+}

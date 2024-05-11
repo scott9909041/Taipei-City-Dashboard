@@ -62,6 +62,7 @@ function parseNum(str = "") {
 	const arr = str.split(",");
 	return [+arr[0], +arr[1]];
 }
+
 export const useMapStore = defineStore("map", {
 	state: () => ({
 		// Array of layer IDs that are in the map
@@ -630,7 +631,7 @@ export const useMapStore = defineStore("map", {
 			});
 			this.removePopup();
 		},
-		async addMarker() {
+		async addMarker(name) {
 			console.log(
 				"this.tempMarkerCoordinates: ",
 				this.tempMarkerCoordinates
@@ -644,12 +645,19 @@ export const useMapStore = defineStore("map", {
 				zoom: 0,
 				pitch: 0,
 				bearing: 0,
-				name: "",
+				name: name,
 				point_type: "pin",
 			});
-			console.log("res: ", res);
+			const popup = new mapboxGl.Popup({ closeButton: false }).setHTML(
+				`<div class="popup-for-pin">${name}</div>`
+			);
+
+			// console.log("res: ", res);
 			const marker = new mapboxGl.Marker();
-			marker.setLngLat(this.tempMarkerCoordinates).addTo(this.map);
+			marker
+				.setLngLat(this.tempMarkerCoordinates)
+				.setPopup(popup)
+				.addTo(this.map);
 		},
 		async addViewPoint(viewPointArray) {
 			// console.log("viewPointArray: ", viewPointArray);
@@ -705,12 +713,36 @@ export const useMapStore = defineStore("map", {
 					const marker = new mapboxGl.Marker();
 					console.log("item.center_x: ", item.center_x);
 					console.log("item.center_y: ", item.center_y);
+					const popup = new mapboxGl.Popup({
+						closeButton: false,
+					})
+						.setHTML(`<div class="popup-for-pin">${item.name} <button id=delete-${item.id} class="delete-pin"}">
+						X
+					  </button></div>`);
+					popup.on("open", (e) => {
+						const el = document.getElementById(`delete-${item.id}`);
+						el.addEventListener("click", async () => {
+							const res = await http.delete(
+								`/view-point/${item.id}`
+							);
+							useDialogStore().showNotification(
+								"success",
+								"地標刪除成功"
+							);
+							marker.remove();
+						});
+					});
 					marker
 						.setLngLat({ lng: item.center_y, lat: item.center_x })
+						.setPopup(popup)
 						.addTo(this.map);
 				}
 				// {lng: 121.53824766946929, lat: 25.046765109170664}
 			});
+
+			// .addEventListener("click", (e) => {
+			// 	console.log(e);
+			// });
 		},
 		/* Popup Related Functions */
 		// 1. Adds a popup when the user clicks on a item. The event will be passed in.
