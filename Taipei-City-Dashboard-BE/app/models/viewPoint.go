@@ -1,12 +1,12 @@
 package models
 
 type ViewPoint struct {
-	ID      int       `json:"id" gorm:"column:id;autoincrement;primaryKey"`
-	UserID  int       `json:"user_id" gorm:"column:user_id;not null"`
-	Center  string `json:"center" gorm:"column:center;type:float[]"`
-	Zoom    float32   `json:"zoom" gorm:"column:zoom"`
-	Pitch   float32   `json:"pitch" gorm:"column:pitch"`
-	Bearing float32   `json:"bearing" gorm:"column:bearing"`
+	ID      int     `json:"id" gorm:"column:id;autoincrement;primaryKey"`
+	UserID  int     `json:"user_id" gorm:"column:user_id;not null"`
+	Center  string  `json:"center" gorm:"column:center;type:float[]"`
+	Zoom    float32 `json:"zoom" gorm:"column:zoom"`
+	Pitch   float32 `json:"pitch" gorm:"column:pitch"`
+	Bearing float32 `json:"bearing" gorm:"column:bearing"`
 }
 
 func CreateViewPoint(user_id int, center string, zoom float32, pitch float32, bearing float32) error {
@@ -27,11 +27,12 @@ func CreateViewPoint(user_id int, center string, zoom float32, pitch float32, be
 	return nil
 }
 
-func GetViewPointByUserID(user_id int) (ViewPoint, error) {
-	var viewpoint ViewPoint
-	err := DBManager.Where("user_id = ?", user_id).First(&viewpoint).Error
+func GetViewPointByUserID(user_id int) ([]ViewPoint, error) {
+	var viewpoint []ViewPoint
+
+	err := DBManager.Where("user_id = ?", user_id).Find(&viewpoint).Error
 	if err != nil {
-		return ViewPoint{}, err
+		return []ViewPoint{}, err
 	}
 
 	return viewpoint, nil
@@ -44,4 +45,3 @@ func DeleteViewPoint(id int) error {
 	}
 	return nil
 }
-
