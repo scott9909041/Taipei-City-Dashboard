@@ -38,6 +38,23 @@ import { calculateGradientSteps } from "../assets/configs/mapbox/arcGradient";
 import { voronoi } from "../assets/utilityFunctions/voronoi.js";
 import { interpolation } from "../assets/utilityFunctions/interpolation.js";
 import { marchingSquare } from "../assets/utilityFunctions/marchingSquare.js";
+const geojson = {
+	type: "FeatureCollection",
+	features: [
+		{
+			type: "Feature",
+			properties: {
+				message: "Foo",
+				imageId: 1011,
+				iconSize: [60, 60],
+			},
+			geometry: {
+				type: "Point",
+				coordinates: [-66.324462, -16.024695],
+			},
+		},
+	],
+};
 
 export const useMapStore = defineStore("map", {
 	state: () => ({
@@ -55,6 +72,7 @@ export const useMapStore = defineStore("map", {
 		savedLocations: savedLocations,
 		// Store currently loading layers,
 		loadingLayers: [],
+		markers: [],
 	}),
 	getters: {},
 	actions: {
@@ -226,7 +244,7 @@ export const useMapStore = defineStore("map", {
 		},
 		// 2. Call an API to get the layer data
 		fetchLocalGeoJson(map_config) {
-			axios
+						axios
 				.get(`/mapData/${map_config.index}.geojson`)
 				.then((rs) => {
 					this.addGeojsonSource(map_config, rs.data);
@@ -588,6 +606,12 @@ export const useMapStore = defineStore("map", {
 			this.removePopup();
 		},
 
+		addMarker(coordinates) {
+			const marker = new mapboxGl.Marker()
+				.setLngLat(coordinates)
+				.addTo(this.map);
+			this.markers.push(marker);
+		},
 		/* Popup Related Functions */
 		// 1. Adds a popup when the user clicks on a item. The event will be passed in.
 		addPopup(event) {

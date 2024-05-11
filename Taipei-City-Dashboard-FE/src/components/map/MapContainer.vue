@@ -5,22 +5,24 @@ import { onMounted, ref } from "vue";
 import { useMapStore } from "../../store/mapStore";
 import { useDialogStore } from "../../store/dialogStore";
 import { useContentStore } from "../../store/contentStore";
-
+import { storeToRefs } from "pinia";
 import MobileLayers from "../dialogs/MobileLayers.vue";
-
+import AddMarkToMap from "../dialogs/AddMarkToMap.vue";
 const mapStore = useMapStore();
 const dialogStore = useDialogStore();
 const contentStore = useContentStore();
-
+const { dialogs } = storeToRefs(dialogStore);
 const districtLayer = ref(false);
 const villageLayer = ref(false);
+const test = () => {
+	console.log("dialogs: ", dialogs);
+};
+const newSavedLocation = ref("");
 
-// const newSavedLocation = ref("");
-
-// function handleSubmitNewLocation() {
-// 	mapStore.addNewSavedLocation(newSavedLocation.value);
-// 	newSavedLocation.value = "";
-// }
+function handleSubmitNewLocation() {
+	mapStore.addNewSavedLocation(newSavedLocation.value);
+	newSavedLocation.value = "";
+}
 
 function toggleDistrictLayer() {
 	districtLayer.value = !districtLayer.value;
@@ -100,12 +102,12 @@ onMounted(() => {
 				<button @click="mapStore.easeToLocation(item)">
 					{{ item[4] }}
 				</button>
-				<!-- <div
+				<div
 					class="mapcontainer-controls-delete"
 					@click="mapStore.removeSavedLocation(index)"
 				>
 					<span>delete</span>
-				</div> -->
+				</div>
 			</div>
 			<!-- <input
 				v-if="mapStore.savedLocations.length < 10"
@@ -116,8 +118,10 @@ onMounted(() => {
 				@focusout="newSavedLocation = ''"
 				@keypress.enter="handleSubmitNewLocation"
 			/> -->
+			<button @click="dialogStore.showDialog('addMarkToMap')">新增</button>
 		</div>
 	</div>
+	<AddMarkToMap />
 </template>
 
 <style scoped lang="scss">
