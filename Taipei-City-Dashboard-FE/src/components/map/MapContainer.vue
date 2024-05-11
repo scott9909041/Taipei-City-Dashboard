@@ -127,11 +127,11 @@ onMounted(() => {
 			</div>
 			<div v-for="(item, index) in mapStore.viewPoints" :key="`index`">
 				<button @click="mapStore.easeToLocation(item)">
-					{{ item[item.length - 1] }}
+					{{ item["name"] }}
 				</button>
 				<div
 					class="mapcontainer-controls-delete"
-					@click="mapStore.removeViewPoint(index)"
+					@click="mapStore.removeViewPoint(item)"
 				>
 					<span>delete</span>
 				</div>

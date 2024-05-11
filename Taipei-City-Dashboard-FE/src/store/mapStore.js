@@ -56,7 +56,12 @@ const geojson = {
 		},
 	],
 };
-
+function parseNum(str = "") {
+    str = str.replace("{", "");
+    str = str.replace("}", "");
+    const arr = str.split(",");
+    return [+arr[0], +arr[1]];
+}
 export const useMapStore = defineStore("map", {
 	state: () => ({
 		// Array of layer IDs that are in the map
@@ -617,8 +622,12 @@ export const useMapStore = defineStore("map", {
 				zoom: viewPointArray[1],
 				pitch: viewPointArray[2],
 				bearing: viewPointArray[3],
+				name: viewPointArray[4],
 			});
-			console.log("res: ", res);
+			console.log("viewPointArray[4]: ", viewPointArray[4]);
+		},
+		async removeViewPoint() {
+			// const res = await http.delete(`/view-point/${user.value.user_id}`);
 		},
 		addMarker(coordinates) {
 			const marker = new mapboxGl.Marker()
@@ -630,7 +639,7 @@ export const useMapStore = defineStore("map", {
 			const authStore = useAuthStore();
 			const { user } = storeToRefs(authStore);
 			const res = await http.get(`/view-point/${user.value.user_id}`);
-			console.log("res: ", res);
+			this.viewPoints = res.data;
 		},
 		/* Popup Related Functions */
 		// 1. Adds a popup when the user clicks on a item. The event will be passed in.
@@ -702,13 +711,30 @@ export const useMapStore = defineStore("map", {
 		// 2. Zoom to a location
 		// [[lng, lat], zoom, pitch, bearing, savedLocationName]
 		easeToLocation(location_array) {
-			this.map.easeTo({
-				center: location_array[0],
-				zoom: location_array[1],
-				duration: 4000,
-				pitch: location_array[2],
-				bearing: location_array[3],
-			});
+			// console.log("location_array: ", location_array);
+			// console.log("test: ", location_array.center[0]);
+			// location_array.center;
+			if (location_array?.zoom) {
+				console.log(
+					"parseNum(location_array.center): ",
+					location_array.center
+				);
+				this.map.easeTo({
+					center: parseNum(location_array.center),
+					zoom: location_array.zoom,
+					duration: 4000,
+					pitch: location_array.pitch,
+					bearing: location_array.bearing,
+				});
+			} else {
+				this.map.easeTo({
+					center: location_array[0],
+					zoom: location_array[1],
+					duration: 4000,
+					pitch: location_array[2],
+					bearing: location_array[3],
+				});
+			}
 		},
 		// 3. Fly to a location
 		flyToLocation(location_array) {
