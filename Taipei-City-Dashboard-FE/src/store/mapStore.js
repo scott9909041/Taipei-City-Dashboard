@@ -632,10 +632,8 @@ export const useMapStore = defineStore("map", {
 			this.removePopup();
 		},
 		async addMarker(name) {
-			console.log(
-				"this.tempMarkerCoordinates: ",
-				this.tempMarkerCoordinates
-			);
+			const marker = new mapboxGl.Marker();
+
 			const authStore = useAuthStore();
 			const { user } = storeToRefs(authStore);
 			const res = await http.post(`/view-point/`, {
@@ -648,12 +646,28 @@ export const useMapStore = defineStore("map", {
 				name: name,
 				point_type: "pin",
 			});
-			const popup = new mapboxGl.Popup({ closeButton: false }).setHTML(
-				`<div class="popup-for-pin">${name}</div>`
-			);
+			const popup = new mapboxGl.Popup({ closeButton: false })
+				.setHTML(`<div class="popup-for-pin">${name} <button id=delete-${res.data.data.id} class="delete-pin"}">
+			X
+		  </button></div>`);
 
 			// console.log("res: ", res);
-			const marker = new mapboxGl.Marker();
+
+			popup.on("open", (e) => {
+				const el = document.getElementById(
+					`delete-${res.data.data.id}`
+				);
+				el.addEventListener("click", async () => {
+					console.log("click");
+					await http.delete(`/view-point/${res.data.data.id}`);
+					useDialogStore().showNotification(
+						"success",
+						"地標刪除成功"
+					);
+					marker.remove();
+					this.marker.remove()
+				});
+			});
 			marker
 				.setLngLat(this.tempMarkerCoordinates)
 				.setPopup(popup)
