@@ -516,7 +516,8 @@ function handleRemoveMap(index) {
 							<div
 								v-if="
 									currentComponent.map_config[index].id ===
-									null
+										null ||
+									currentComponent.map_config[index].geojson
 								"
 							>
 								<label>地圖{{ index + 1 }} Geojson內容</label>

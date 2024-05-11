@@ -39,29 +39,6 @@ import { calculateGradientSteps } from "../assets/configs/mapbox/arcGradient";
 import { voronoi } from "../assets/utilityFunctions/voronoi.js";
 import { interpolation } from "../assets/utilityFunctions/interpolation.js";
 import { marchingSquare } from "../assets/utilityFunctions/marchingSquare.js";
-const geojson = {
-	type: "FeatureCollection",
-	features: [
-		{
-			type: "Feature",
-			properties: {
-				message: "Foo",
-				imageId: 1011,
-				iconSize: [60, 60],
-			},
-			geometry: {
-				type: "Point",
-				coordinates: [-66.324462, -16.024695],
-			},
-		},
-	],
-};
-function parseNum(str = "") {
-	str = str.replace("{", "");
-	str = str.replace("}", "");
-	const arr = str.split(",");
-	return [+arr[0], +arr[1]];
-}
 
 export const useMapStore = defineStore("map", {
 	state: () => ({
@@ -87,7 +64,6 @@ export const useMapStore = defineStore("map", {
 	getters: {},
 	actions: {
 		setTempPin(payload) {
-			console.log(123);
 			this.marker = payload;
 		},
 		/* Initialize Mapbox */
@@ -116,12 +92,9 @@ export const useMapStore = defineStore("map", {
 				})
 				.on("dblclick", (event) => {
 					// mapboxgl-marker
-					// console.log("event: ", event);
 
 					let coordinates = event.lngLat;
-					// console.log(this.marker);
 					this.tempMarkerCoordinates = coordinates;
-					console.log("coordinates: ", coordinates);
 					this.marker.setLngLat(coordinates).addTo(this.map);
 				})
 				.on("idle", () => {
@@ -240,31 +213,32 @@ export const useMapStore = defineStore("map", {
 		/* Adding Map Layers */
 		// 1. Passes in the map_config (an Array of Objects) of a component and adds all layers to the map layer list
 		addToMapLayerList(map_config) {
-			map_config.forEach((config) => {
-				let mapLayerId = `${config.index}-${config.type}`;
+			map_config.forEach((element) => {
+				let mapLayerId = `${element.index}-${element.type}`;
 				// 1-1. If the layer exists, simply turn on the visibility and add it to the visible layers list
-				if (this.currentLayers.find((layer) => layer === mapLayerId)) {
+				if (
+					this.currentLayers.find((element) => element === mapLayerId)
+				) {
 					this.loadingLayers.push("rendering");
 					this.turnOnMapLayerVisibility(mapLayerId);
 					if (
 						!this.currentVisibleLayers.find(
-							(layer) => layer === mapLayerId
+							(element) => element === mapLayerId
 						)
 					) {
 						this.currentVisibleLayers.push(mapLayerId);
 					}
 					return;
 				}
-				let appendLayer = { ...config };
+				let appendLayer = { ...element };
 				appendLayer.layerId = mapLayerId;
 				// 1-2. If the layer doesn't exist, call an API to get the layer data
 				this.loadingLayers.push(appendLayer.layerId);
-				console.log("hererere", config);
-				if (config.geojson) {
-					this.addGeojsonSource(config, config.geojson);
-				} else if (config.source === "geojson") {
+				if (element.geojson) {
+					this.addGeojsonSource(appendLayer, element.geojson);
+				} else if (element.source === "geojson") {
 					this.fetchLocalGeoJson(appendLayer);
-				} else if (config.source === "raster") {
+				} else if (element.source === "raster") {
 					this.addRasterSource(appendLayer);
 				}
 			});
@@ -661,14 +635,11 @@ export const useMapStore = defineStore("map", {
 			X
 		  </button></div>`);
 
-			// console.log("res: ", res);
-
 			popup.on("open", (e) => {
 				const el = document.getElementById(
 					`delete-${res.data.data.id}`
 				);
 				el.addEventListener("click", async () => {
-					console.log("click");
 					await http.delete(`/view-point/${res.data.data.id}`);
 					useDialogStore().showNotification(
 						"success",
@@ -684,8 +655,6 @@ export const useMapStore = defineStore("map", {
 				.addTo(this.map);
 		},
 		async addViewPoint(viewPointArray) {
-			// console.log("viewPointArray: ", viewPointArray);
-
 			const authStore = useAuthStore();
 			const { user } = storeToRefs(authStore);
 			const res = await http.post(`/view-point/`, {
@@ -698,7 +667,6 @@ export const useMapStore = defineStore("map", {
 				name: viewPointArray[4],
 				point_type: "view",
 			});
-			console.log("res: ", res);
 			// {
 			// 	"id": 23,
 			// 	"user_id": 1,
@@ -735,8 +703,6 @@ export const useMapStore = defineStore("map", {
 			this.viewPoints.forEach((item) => {
 				if (item.point_type === "pin") {
 					const marker = new mapboxGl.Marker();
-					console.log("item.center_x: ", item.center_x);
-					console.log("item.center_y: ", item.center_y);
 					const popup = new mapboxGl.Popup({
 						closeButton: false,
 					})
@@ -765,7 +731,6 @@ export const useMapStore = defineStore("map", {
 			});
 
 			// .addEventListener("click", (e) => {
-			// 	console.log(e);
 			// });
 		},
 		/* Popup Related Functions */
@@ -838,11 +803,8 @@ export const useMapStore = defineStore("map", {
 		// 2. Zoom to a location
 		// [[lng, lat], zoom, pitch, bearing, savedLocationName]
 		easeToLocation(location_array) {
-			// console.log("location_array: ", location_array);
-			// console.log("test: ", location_array.center[0]);
 			// location_array.center;
 			if (location_array?.zoom) {
-				// console.log(
 				// 	"parseNum(location_array.center): ",
 				// 	location_array.center
 				// );

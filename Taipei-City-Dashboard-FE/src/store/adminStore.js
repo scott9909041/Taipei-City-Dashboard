@@ -173,6 +173,13 @@ export const useAdminStore = defineStore("admin", {
 						undefined,
 						2
 					);
+					if (map_config.geojson) {
+						map_config.geojson = JSON.stringify(
+							map_config.geojson,
+							undefined,
+							2
+						);
+					}
 				});
 			} else {
 				this.currentComponent.map_config = [];
