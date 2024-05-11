@@ -7,7 +7,7 @@ import (
 
 const (
 	// VERSION - is used to identify software version
-	VERSION = "dev"
+	VERSION = "v1"
 
 	// Request api limit times and duration
 	AuthLimitAPIRequestsTimes        = 300
