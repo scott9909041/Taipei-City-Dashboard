@@ -113,12 +113,10 @@ type MapLegendData struct {
 }
 
 /* ----- Handlers ----- */
-func CreateComponentChartData(index string, names []string, columnTypes []string) (query string, error error) {
+func CreateComponentChartDataTable(index string, names []string, columnTypes []string) (query string, error error) {
 	// Create the table for the chart data
 	queryChart := "CREATE TABLE public." + index + " ("
-	// for _, column := range meta.Names, meta.Types {
-	// 	queryChart += column.Name + " " + column.Type + ","
-	// }
+
 	for i := range names {
 		name:= names[i]
 		columnType := columnTypes[i]
@@ -132,6 +130,19 @@ func CreateComponentChartData(index string, names []string, columnTypes []string
 	}
 
 	return queryChart, nil
+}
+
+func CreateComponentMapData(mapName string, geoJson string) error {
+	// insert the geojson into the map table
+	// INSERT INTO public.map_data (index, json) VALUES ('test', 'json')
+	queryMap := "INSERT INTO public.map_data (index, json) VALUES ('" + mapName + "', '" + geoJson + "')"
+
+	err := DBDashboard.Exec(queryMap).Error
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func GetComponentChartDataQuery(id int) (queryType string, queryString string, err error) {
@@ -360,4 +371,28 @@ func GetMapLegendData(query *string, timeFrom string, timeTo string) (chartData 
 	}
 
 	return chartData, nil
+}
+
+func UpdateComponentMapData(mapName string, geoJson string) error {
+	// UPDATE public.map_data SET json = 'geoJson' WHERE index = 'mapName'
+	queryMap := "UPDATE public.map_data SET json = '" + geoJson + "' WHERE index = '" + mapName + "'"
+
+	err := DBDashboard.Exec(queryMap).Error
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func DeleteComponentMapData(mapName string) error {
+	// DELETE FROM public.map_data WHERE index = 'mapName'
+	queryMap := "DELETE FROM public.map_data WHERE index = '" + mapName + "'"
+
+	err := DBDashboard.Exec(queryMap).Error
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
