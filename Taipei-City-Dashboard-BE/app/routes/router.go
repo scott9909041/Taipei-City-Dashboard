@@ -26,6 +26,7 @@ func ConfigureRoutes() {
 	configureComponentRoutes()
 	configureDashboardRoutes()
 	configureIssueRoutes()
+	configureViewPointRoutes()
 }
 
 func configureAuthRoutes() {
@@ -126,5 +127,16 @@ func configureIssueRoutes() {
 			GET("/", controllers.GetAllIssues)
 		issueRoutes.
 			PATCH("/:id", controllers.UpdateIssueByID)
+	}
+}
+
+func configureViewPointRoutes() {
+	viewPointRoutes := RouterGroup.Group("/view-point")
+	viewPointRoutes.Use(middleware.IsLoggedIn())
+	{
+		viewPointRoutes.
+			GET("/:id", controllers.GetViewPointByUserID).
+			POST("/", controllers.CreateViewPoint).
+			DELETE("/:id", controllers.DeleteViewPoint)
 	}
 }
