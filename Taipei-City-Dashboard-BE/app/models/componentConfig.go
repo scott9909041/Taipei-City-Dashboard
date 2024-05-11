@@ -84,17 +84,18 @@ func CreateComponent(index string, name string, historyConfig json.RawMessage, m
 	if queryType == "" {
 		queryType = "map_legend"
 	}
-	component = Component{Index: index, Name: name, HistoryConfig: historyConfig, MapConfigIDs: mapConfigIDs, MapFilter: mapFilter, TimeFrom: timeFrom, TimeTo: timeTo, UpdateFreq: updateFreq, UpdateFreqUnit: updateFreqUnit, Source: source, ShortDesc: shortDesc, LongDesc: longDesc, UseCase: useCase, Links: links, Contributors: contributors, CreatedAt: time.Now(), UpdatedAt: time.Now(), QueryType: queryType, QueryChart: string("select * from "+index+" where index = '-1'")}
+	component = Component{Index: index, Name: name, HistoryConfig: historyConfig, MapConfigIDs: mapConfigIDs, MapFilter: mapFilter, TimeFrom: timeFrom, TimeTo: timeTo, UpdateFreq: updateFreq, UpdateFreqUnit: updateFreqUnit, Source: source, ShortDesc: shortDesc, LongDesc: longDesc, UseCase: useCase, Links: links, Contributors: contributors, CreatedAt: time.Now(), UpdatedAt: time.Now(), QueryType: queryType, QueryChart: string("select * from " + index)}
+
+	err = DBDashboard.Exec("CREATE TABLE IF NOT EXISTS public." + index + " (id SERIAL PRIMARY KEY)").Error
+	if err != nil {
+		return component, err
+	}
 
 	err = DBManager.Create(&component).Error
 	if err != nil {
 		return component, err
 	}
 
-	err = DBManager.Where("id = ?", component.ID).First(&component).Error
-	if err != nil {
-		return component, err
-	}
 	return component, nil
 }
 
@@ -112,7 +113,6 @@ func CreateComponentChartConfig(index string, color pq.StringArray, types pq.Str
 	}
 	return chartConfig, nil
 }
-
 
 func GetAllComponents(pageSize int, pageNum int, sort string, order string, filterBy string, filterMode string, filterValue string, searchByIndex string, searchByName string) (components []Component, totalComponents int64, resultNum int64, err error) {
 	tempDB := createTempComponentDB()
