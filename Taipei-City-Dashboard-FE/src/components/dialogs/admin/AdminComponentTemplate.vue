@@ -133,8 +133,11 @@ const handleSubmit = async () => {
 	}
 	console.log(params.value);
 	try {
-		const res = await http.post(`/component/`, params.value);
-		console.log("res: ", res);
+		const createRes = await http.post(`/component/`, params.value);
+		console.log("createRes: ", createRes);
+		const getRes = await http.get(`/component/${createRes.data.data.id}`);
+		console.log("getRes: ", getRes);
+		adminStore.currentComponent = getRes.data.data;
 		dialogStore.showNotification("success", "新建組建成功");
 	} catch (error) {
 		console.error(error);
