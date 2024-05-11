@@ -42,6 +42,7 @@ func CreateComponentChartDataTable(c *gin.Context) {
 
 func CreateComponentMapData(c *gin.Context){
 	// 1. Get the json data from body
+	index := c.Param("id")
 	jsonData := DashboardMapData{}
 	if err := c.ShouldBindJSON(&jsonData); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"status": "error", "message": "Invalid json data"})
@@ -49,7 +50,7 @@ func CreateComponentMapData(c *gin.Context){
 	}
 
 	// 2. Create the component data in the database
-	err := models.CreateComponentMapData(jsonData.Index, jsonData.Json)
+	err := models.CreateComponentMapData(index, jsonData.Json)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"status": "error", "message": err.Error()})
 		return
@@ -159,5 +160,55 @@ func GetComponentHistoryData(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"status": "success", "data": chartData})
 }
 
+func GetComponentMapData(c *gin.Context) {
+	// 1. Get the component index from the URL
+	index := c.Param("id")
+
+
+	// 2. Get the map data from the database
+	jsonData, err := models.GetComponentMapData(index)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"status": "error", "message": err.Error()})
+		return
+	}
+	if jsonData == "" {
+		c.JSON(http.StatusNotFound, gin.H{"status": "error", "message": "No map data available"})
+		return
+	}
+
+	// 3. Return the map data
+	c.JSON(http.StatusOK, gin.H{"status": "success", "data": jsonData})
+}
+
 func UpdateComponentMapData(c *gin.Context) {
+	// 1. Get this json data from body
+	index := c.Param("id")
+	jsonData := DashboardMapData{}
+	if err := c.ShouldBindJSON(&jsonData); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"status": "error", "message": "Invalid json data"})
+		return
+	}
+
+	// 2. Update the component data in the database
+	err := models.UpdateComponentMapData(index, jsonData.Json)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"status": "error", "message": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"status": "success", "message": "Component data updated"})
+}
+
+func DeleteComponentMapData(c *gin.Context) {
+	// 1. Get the component idex from the URL
+	index := c.Param("id")
+
+	// 2. Delete the component data in the database
+	err := models.DeleteComponentMapData(index)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"status": "error", "message": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"status": "success", "message": "Component data deleted"})
 }

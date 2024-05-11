@@ -373,6 +373,19 @@ func GetMapLegendData(query *string, timeFrom string, timeTo string) (chartData 
 	return chartData, nil
 }
 
+func GetComponentMapData(mapName string) (geoJson string, err error) {
+	// SELECT json FROM public.map_data WHERE index = 'mapName'
+	queryMap := "SELECT json FROM public.map_data WHERE index = '" + mapName + "'"
+
+
+	err = DBDashboard.Raw(queryMap).Row().Scan(&geoJson)
+	if err != nil {
+		return geoJson, err
+	}
+
+	return geoJson, nil
+}
+
 func UpdateComponentMapData(mapName string, geoJson string) error {
 	// UPDATE public.map_data SET json = 'geoJson' WHERE index = 'mapName'
 	queryMap := "UPDATE public.map_data SET json = '" + geoJson + "' WHERE index = '" + mapName + "'"

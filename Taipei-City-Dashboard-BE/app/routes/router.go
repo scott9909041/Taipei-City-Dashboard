@@ -62,6 +62,11 @@ func configureComponentRoutes() {
 	componentRoutes.Use(middleware.LimitAPIRequests(global.ComponentLimitAPIRequestsTimes, global.LimitRequestsDuration))
 	componentRoutes.Use(middleware.LimitTotalRequests(global.ComponentLimitTotalRequestsTimes, global.TokenExpirationDuration))
 	{
+		componentRoutes.
+			GET("/:id/map-data", controllers.GetComponentMapData).
+			POST("/:id/map-data", controllers.CreateComponentMapData).
+			PATCH("/:id/map-data", controllers.UpdateComponentMapData).
+			DELETE("/:id/map-data", controllers.DeleteComponentMapData)
 		componentRoutes.GET("/", controllers.GetAllComponents)
 		componentRoutes.
 			GET("/:id", controllers.GetComponentByID)
@@ -69,7 +74,6 @@ func configureComponentRoutes() {
 			GET("/:id/chart", controllers.GetComponentChartData)
 		componentRoutes.GET("/:id/history", controllers.GetComponentHistoryData)
 		componentRoutes.POST("/chart-data-table", controllers.CreateComponentChartDataTable)
-		componentRoutes.POST("/map-data", controllers.CreateComponentMapData)
 	}
 	componentRoutes.Use(middleware.IsSysAdm())
 	{
