@@ -17,7 +17,12 @@ type DashboardDataMeta struct {
 	ColumnTypes []string `json:"types"`
 }
 
-func CreateComponentChartData(c *gin.Context) {
+type DashboardMapData struct {
+	Index string `json:"index"`
+	Json  string `json:"json"`
+}
+
+func CreateComponentChartDataTable(c *gin.Context) {
 	// 1. Get the meta from body
 	meta := DashboardDataMeta{}
 	if err := c.ShouldBindJSON(&meta); err != nil {
@@ -26,13 +31,31 @@ func CreateComponentChartData(c *gin.Context) {
 	}
 
 	// 2. Create the component data in the database
-	query, err := models.CreateComponentChartData(meta.Index, meta.Names, meta.ColumnTypes)
+	query, err := models.CreateComponentChartDataTable(meta.Index, meta.Names, meta.ColumnTypes)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"status": "error", "message": err.Error(), "query": query})
 		return
 	}
 
 	c.JSON(http.StatusCreated, gin.H{"status": "success", "message": "Component data created", "query": query})
+}
+
+func CreateComponentMapData(c *gin.Context){
+	// 1. Get the json data from body
+	jsonData := DashboardMapData{}
+	if err := c.ShouldBindJSON(&jsonData); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"status": "error", "message": "Invalid json data"})
+		return
+	}
+
+	// 2. Create the component data in the database
+	err := models.CreateComponentMapData(jsonData.Index, jsonData.Json)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"status": "error", "message": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusCreated, gin.H{"status": "success", "message": "Component data created"})
 }
 
 /*
@@ -134,4 +157,7 @@ func GetComponentHistoryData(c *gin.Context) {
 		return
 	}
 	c.JSON(http.StatusOK, gin.H{"status": "success", "data": chartData})
+}
+
+func UpdateComponentMapData(c *gin.Context) {
 }

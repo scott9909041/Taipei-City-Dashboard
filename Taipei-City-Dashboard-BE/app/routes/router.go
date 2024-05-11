@@ -68,7 +68,8 @@ func configureComponentRoutes() {
 		componentRoutes.
 			GET("/:id/chart", controllers.GetComponentChartData)
 		componentRoutes.GET("/:id/history", controllers.GetComponentHistoryData)
-		componentRoutes.POST("/chart-data", controllers.CreateComponentChartData)
+		componentRoutes.POST("/chart-data-table", controllers.CreateComponentChartDataTable)
+		componentRoutes.POST("/map-data", controllers.CreateComponentMapData)
 	}
 	componentRoutes.Use(middleware.IsSysAdm())
 	{
