@@ -72,6 +72,9 @@ textarea:disabled {
 input:required:invalid {
 	border: solid 1px rgb(237, 90, 90);
 }
+select:required:invalid {
+	border: solid 1px rgb(237, 90, 90);
+}
 
 select {
 	padding: 4px 6px;
