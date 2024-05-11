@@ -7,8 +7,9 @@ The mapStore controls the map and includes methods to modify it.
 !! PLEASE BE SURE TO REFERENCE THE MAPBOX DOCUMENTATION IF ANYTHING IS UNCLEAR !!
 https://docs.mapbox.com/mapbox-gl-js/guides/
 */
+import http from "../router/axios.js";
 import { createApp, defineComponent, nextTick, ref } from "vue";
-import { defineStore } from "pinia";
+import { defineStore, storeToRefs } from "pinia";
 import mapboxGl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import axios from "axios";
@@ -606,8 +607,18 @@ export const useMapStore = defineStore("map", {
 			});
 			this.removePopup();
 		},
-		addViewPoint(viewPointArray) {
+		async addViewPoint(viewPointArray) {
 			this.viewPoints.push(viewPointArray);
+			const authStore = useAuthStore();
+			const { user } = storeToRefs(authStore);
+			const res = await http.post(`/view-point/`, {
+				user_id: user.value.user_id,
+				center: viewPointArray[0],
+				zoom: viewPointArray[1],
+				pitch: viewPointArray[2],
+				bearing: viewPointArray[3],
+			});
+			console.log("res: ", res);
 		},
 		addMarker(coordinates) {
 			const marker = new mapboxGl.Marker()
@@ -615,7 +626,12 @@ export const useMapStore = defineStore("map", {
 				.addTo(this.map);
 			this.markers.push(marker);
 		},
-		fetchViewPoints() {},
+		async fetchViewPoints() {
+			const authStore = useAuthStore();
+			const { user } = storeToRefs(authStore);
+			const res = await http.get(`/view-point/${user.value.user_id}`);
+			console.log("res: ", res);
+		},
 		/* Popup Related Functions */
 		// 1. Adds a popup when the user clicks on a item. The event will be passed in.
 		addPopup(event) {

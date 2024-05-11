@@ -8,6 +8,11 @@ import { useContentStore } from "../../store/contentStore";
 import { storeToRefs } from "pinia";
 import MobileLayers from "../dialogs/MobileLayers.vue";
 import AddMarkToMap from "../dialogs/AddViewPoint.vue";
+import { useAuthStore } from "../../store/authStore";
+// import { storeToRefs } from "pinia";
+
+const authStore = useAuthStore();
+const { user } = storeToRefs(authStore);
 const mapStore = useMapStore();
 const dialogStore = useDialogStore();
 const contentStore = useContentStore();
@@ -37,9 +42,20 @@ function toggleVillageLayer() {
 onMounted(() => {
 	mapStore.initializeMapBox();
 });
+
+// watch(
+// 	() => user.value.user_id,
+// 	(newValue) => {
+// 		if (newValue !== null) {
+// 			mapStore.fetchViewPoints();
+// 		}
+// 	},
+// 	{ immediate: true }
+// );
 </script>
 
 <template>
+	<!-- user:{{ user }}ㄑ -->
 	<div class="mapcontainer">
 		<div class="mapcontainer-map">
 			<!-- #mapboxBox needs to be empty to ensure Mapbox performance -->

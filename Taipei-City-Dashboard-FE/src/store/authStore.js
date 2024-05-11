@@ -10,7 +10,7 @@ import http from "../router/axios";
 import { useDialogStore } from "./dialogStore";
 import { useContentStore } from "./contentStore";
 import router from "../router/index";
-
+import { useMapStore } from "./mapStore";
 export const useAuthStore = defineStore("auth", {
 	state: () => ({
 		// This is a shortened version of the user object Taipei City Dashboard's backend will return once authenticated
@@ -39,6 +39,7 @@ export const useAuthStore = defineStore("auth", {
 		async initialChecks() {
 			// Check if the user is using a mobile device
 			this.checkIfMobile();
+			
 
 			// Check if the user is logged in
 			if (localStorage.getItem("token")) {
@@ -48,6 +49,10 @@ export const useAuthStore = defineStore("auth", {
 				}
 				const response = await http.get("/user/me");
 				this.user = response.data.user;
+				if (this.user) {
+					const mapStore = useMapStore();
+					mapStore.fetchViewPoints();
+				}
 				this.editUser = JSON.parse(JSON.stringify(this.user));
 			}
 		},
