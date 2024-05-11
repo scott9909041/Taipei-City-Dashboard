@@ -133,7 +133,7 @@ const handleSubmit = async () => {
 	}
 	console.log(params.value);
 	try {
-		const res = await http.post(`/component`, params.value);
+		const res = await http.post(`/component/`, params.value);
 		console.log("res: ", res);
 		dialogStore.showNotification("success", "新建組建成功");
 	} catch (error) {
