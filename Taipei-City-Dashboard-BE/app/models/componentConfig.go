@@ -35,7 +35,7 @@ type Component struct {
 	CreatedAt      time.Time       `json:"-" gorm:"column:created_at;type:timestamp with time zone;not null"`
 	UpdatedAt      time.Time       `json:"updated_at" gorm:"column:updated_at;type:timestamp with time zone;not null"`
 	QueryType      string          `json:"query_type" gorm:"column:query_type;type:varchar"`
-	QueryChart     string          `json:"-" gorm:"column:query_chart;type:text"`
+	QueryChart     string          `json:"query_chart" gorm:"column:query_chart;type:text"`
 	QueryHistory   string          `json:"-" gorm:"column:query_history;type:text"`
 }
 
@@ -81,7 +81,7 @@ func createTempComponentDB() *gorm.DB {
 		Group("components.id, component_charts.*")
 }
 
-func CreateComponent(index string, name string, historyConfig json.RawMessage, mapConfigIDs pq.Int64Array, mapFilter json.RawMessage, timeFrom string, timeTo string, updateFreq *int64, updateFreqUnit string, source string, shortDesc string, longDesc string, useCase string, links pq.StringArray, contributors pq.StringArray, queryType string) (component Component, err error) {
+func CreateComponent(index string, name string, historyConfig json.RawMessage, mapConfigIDs pq.Int64Array, mapFilter json.RawMessage, timeFrom string, timeTo string, updateFreq *int64, updateFreqUnit string, source string, shortDesc string, longDesc string, useCase string, links pq.StringArray, contributors pq.StringArray, queryType string, queryChart string) (component Component, err error) {
 	if queryType == "" {
 		queryType = "map_legend"
 	}

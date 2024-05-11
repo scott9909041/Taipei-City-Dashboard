@@ -55,7 +55,7 @@ func CreateComponent(c *gin.Context) {
 	}
 
 	// Create the component
-	component, err = models.CreateComponent(component.Index, component.Name, component.HistoryConfig, component.MapConfigIDs, component.MapFilter, component.TimeFrom, component.TimeTo, component.UpdateFreq, component.UpdateFreqUnit, component.Source, component.ShortDesc, component.LongDesc, component.UseCase, component.Links, component.Contributors, component.QueryType)
+	component, err = models.CreateComponent(component.Index, component.Name, component.HistoryConfig, component.MapConfigIDs, component.MapFilter, component.TimeFrom, component.TimeTo, component.UpdateFreq, component.UpdateFreqUnit, component.Source, component.ShortDesc, component.LongDesc, component.UseCase, component.Links, component.Contributors, component.QueryType, component.QueryChart)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"status": "error", "message": err.Error()})
 		return
