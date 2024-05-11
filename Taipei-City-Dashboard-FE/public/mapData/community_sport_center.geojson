@@ -1,0 +1,173 @@
+{
+   "type": "FeatureCollection",
+   "features": [
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 121.5192,25.0548 ]
+    },
+    "properties": {
+    "名稱":"中山運動中心",
+    "郵遞區號":10412,
+    "地址":"臺北市中山區中山北路二段44巷2號",
+    "電話":"(02)25811060",
+    "網址":"https://cssc.cyc.org.tw/"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 121.5073,25.1126 ]
+    },
+    "properties": {
+    "名稱":"北投運動中心",
+    "郵遞區號":11271,
+    "地址":"臺北市北投區石牌路一段39巷100號",
+    "電話":"(02)28202880",
+    "網址":"https://www.btsport.org.tw/"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 121.5417,25.0336 ]
+    },
+    "properties": {
+    "名稱":"中正運動中心",
+    "郵遞區號":10048,
+    "地址":"臺北市中正區信義路一段1號",
+    "電話":"(02)23963358",
+    "網址":"https://www.tpejjsports.com.tw/"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 121.5796,25.0489 ]
+    },
+    "properties": {
+    "名稱":"南港運動中心",
+    "郵遞區號":11577,
+    "地址":"臺北市南港區玉成街69號",
+    "電話":"(02)26532279",
+    "網址":"https://ngsc.cyc.org.tw/"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 121.5053,25.0474 ]
+    },
+    "properties": {
+    "名稱":"萬華運動中心",
+    "郵遞區號":10841,
+    "地址":"臺北市萬華區西寧南路6之1號",
+    "電話":"(02)23759900",
+    "網址":"https://whsc.com.tw/"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 121.5201,25.0895 ]
+    },
+    "properties": {
+    "名稱":"士林運動中心",
+    "郵遞區號":11168,
+    "地址":"臺北市士林區士商路1號",
+    "電話":"(02)28806066",
+    "網址":"https://www.slsc-taipei.org/"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 121.5730,25.0781 ]
+    },
+    "properties": {
+    "名稱":"內湖運動中心",
+    "郵遞區號":11493,
+    "地址":"臺北市內湖區洲子街12號",
+    "電話":"(02)26562869",
+    "網址":"https://nhsc.cyc.org.tw/"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 121.5644,25.0318 ]
+    },
+    "properties": {
+    "名稱":"信義運動中心",
+    "郵遞區號":11047,
+    "地址":"臺北市信義區松勤街100號",
+    "電話":"(02)87861911",
+    "網址":"https://xysc.teamxports.com/"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 121.5480,25.0486 ]
+    },
+    "properties": {
+    "名稱":"松山運動中心",
+    "郵遞區號":10549,
+    "地址":"臺北市松山區敦化北路1號",
+    "電話":"(02)77555058",
+    "網址":"https://sssc.com.tw/"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 121.5139,25.0648 ]
+    },
+    "properties": {
+    "名稱":"大同運動中心",
+    "郵遞區號":10361,
+    "地址":"臺北市大同區大龍街51號",
+    "電話":"(02)25920055",
+    "網址":"https://dtsc-wdyg.com.tw/"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 121.5434,25.0207 ]
+    },
+    "properties": {
+    "名稱":"大安運動中心",
+    "郵遞區號":10671,
+    "地址":"臺北市大安區辛亥路3段55號",
+    "電話":"(02)23770300",
+    "網址":"https://www.daansports.com.tw/"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 121.5574,24.9970 ]
+    },
+    "properties": {
+    "名稱":"文山運動中心",
+    "郵遞區號":11698,
+    "地址":"臺北市文山區興隆路三段222號",
+    "電話":"(02)22308268",
+    "網址":"https://wssc.cyc.org.tw/"
+    }
+  }
+]
+}

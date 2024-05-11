@@ -18,7 +18,7 @@ const {
 const dialogStore = useDialogStore();
 const authStore = useAuthStore();
 
-const loginMode = ref("tp");
+const loginMode = ref("email");
 const email = ref("");
 const password = ref("");
 

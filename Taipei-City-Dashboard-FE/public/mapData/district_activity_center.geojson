@@ -1,0 +1,2111 @@
+{
+   "type": "FeatureCollection",
+   "features": [
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":1,
+    "區":"松山區",
+    "地址":"八德路3段12巷52弄2之1號",
+    "x座標":305517.902
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":2,
+    "區":"松山區",
+    "地址":"長安東路2段229號11樓",
+    "x座標":305076.922
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":3,
+    "區":"松山區",
+    "地址":"民生東路4段133號1樓",
+    "x座標":305938.737
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":4,
+    "區":"松山區",
+    "地址":"民權東路3段140巷15號4樓",
+    "x座標":305161.599
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":5,
+    "區":"松山區",
+    "地址":"健康路399號3樓",
+    "x座標":307395.871
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":6,
+    "區":"松山區",
+    "地址":"三民路35巷9號1樓",
+    "x座標":306751.094
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":7,
+    "區":"松山區",
+    "地址":"民權東路5段臨43號",
+    "x座標":307253.813
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":8,
+    "區":"松山區",
+    "地址":"民生東路5段163之1號8樓",
+    "x座標":306793.184
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":9,
+    "區":"松山區",
+    "地址":"市民大道5段99號",
+    "x座標":306655.317
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":10,
+    "區":"松山區",
+    "地址":"長春路339巷2號B1",
+    "x座標":305007.842
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":11,
+    "區":"松山區",
+    "地址":"光復北路230巷21號B1",
+    "x座標":305952.809
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":12,
+    "區":"松山區",
+    "地址":"南京東路5段291巷44弄23號之1",
+    "x座標":307067.602
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":13,
+    "區":"松山區",
+    "地址":"八德路3段158巷7弄20號",
+    "x座標":306107.352
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":14,
+    "區":"松山區",
+    "地址":"八德路4段580號",
+    "x座標":307688.931
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":15,
+    "區":"松山區",
+    "地址":"延吉街30巷3號1樓",
+    "x座標":305823.447
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":16,
+    "區":"信義區",
+    "地址":"基隆路1段364巷22號",
+    "x座標":306432.297
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":17,
+    "區":"信義區",
+    "地址":"松山路657號",
+    "x座標":308578.559
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":18,
+    "區":"信義區",
+    "地址":"松山路294號4樓",
+    "x座標":308288.168
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":19,
+    "區":"信義區",
+    "地址":"仁愛路4段452巷3號",
+    "x座標":306446.459
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":20,
+    "區":"信義區",
+    "地址":"吳興街156巷6號6樓",
+    "x座標":306632.405
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":21,
+    "區":"信義區",
+    "地址":"和平東路3段391巷16號2樓",
+    "x座標":306329.796
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":22,
+    "區":"信義區",
+    "地址":"莊敬路423巷7弄2號1樓",
+    "x座標":307143.408
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":23,
+    "區":"信義區",
+    "地址":"松仁路240巷19號3樓",
+    "x座標":307403.285
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":24,
+    "區":"信義區",
+    "地址":"吳興街506巷21號",
+    "x座標":307375.239
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":25,
+    "區":"信義區",
+    "地址":"四育里松隆路290號",
+    "x座標":308108.226
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":26,
+    "區":"大安區",
+    "地址":"信義路3段134巷82號2樓",
+    "x座標":304417.949
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":27,
+    "區":"大安區",
+    "地址":"四維路198巷30弄9號",
+    "x座標":305091.791
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":28,
+    "區":"大安區",
+    "地址":"永康街60號4樓",
+    "x座標":303424.828
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":29,
+    "區":"大安區",
+    "地址":"辛亥路1段臨141號",
+    "x座標":303743.489
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":30,
+    "區":"大安區",
+    "地址":"和平東路1段121號B2",
+    "x座標":303215.712
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":31,
+    "區":"大安區",
+    "地址":"通安街98號",
+    "x座標":305800.928
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":32,
+    "區":"大安區",
+    "地址":"延吉街236巷17號2樓",
+    "x座標":306021.956
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":33,
+    "區":"大安區",
+    "地址":"信義路3段107號2樓",
+    "x座標":304397.953
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":34,
+    "區":"大安區",
+    "地址":"瑞安街71巷2號3樓",
+    "x座標":304640.02
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":35,
+    "區":"大安區",
+    "地址":"樂業街97號地下一層",
+    "x座標":305705.269
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":36,
+    "區":"大安區",
+    "地址":"市民大道3段206號4樓之1",
+    "x座標":304486.479
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":37,
+    "區":"大安區",
+    "地址":"四維路76巷12號6樓",
+    "x座標":305234.786
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":38,
+    "區":"中山區",
+    "地址":"龍江路15號3樓",
+    "x座標":304542.622
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":39,
+    "區":"中山區",
+    "地址":"合江街137號4樓",
+    "x座標":304413.453
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":40,
+    "區":"中山區",
+    "地址":"新生北路三段特50之1號",
+    "x座標":303241.985
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":41,
+    "區":"中山區",
+    "地址":"中山北路2段59巷21號2樓",
+    "x座標":302863.113
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":42,
+    "區":"中山區",
+    "地址":"長安西路3號3樓之1",
+    "x座標":302589.136
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":43,
+    "區":"中山區",
+    "地址":"松江路26巷18號",
+    "x座標":303680.482
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":44,
+    "區":"中山區",
+    "地址":"龍江路429巷10號3樓",
+    "x座標":304650.652
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":45,
+    "區":"中山區",
+    "地址":"大直街21巷2號4樓",
+    "x座標":305155.283
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":46,
+    "區":"中山區",
+    "地址":"錦州街222號2樓",
+    "x座標":303693.234
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":47,
+    "區":"中山區",
+    "地址":"通北街143號2樓",
+    "x座標":304268.268
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":48,
+    "區":"中山區",
+    "地址":"敬業三路160號2樓",
+    "x座標":306150.468
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":49,
+    "區":"中山區",
+    "地址":"林森北路67巷7號1、2、3、4樓",
+    "x座標":302961.215
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":50,
+    "區":"中山區",
+    "地址":"長春路299號3樓",
+    "x座標":304712.514
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":51,
+    "區":"中山區",
+    "地址":"北安路759巷6號",
+    "x座標":305784.249
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":52,
+    "區":"中山區",
+    "地址":"龍江路168號地下室",
+    "x座標":304525.731
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":53,
+    "區":"中山區",
+    "地址":"市民大道3段209號",
+    "x座標":304789.881
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":54,
+    "區":"中山區",
+    "地址":"民族東路282號4樓",
+    "x座標":304070.105
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":55,
+    "區":"中山區",
+    "地址":"大直街1號4樓",
+    "x座標":305176.621
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":56,
+    "區":"中山區",
+    "地址":"新生北路2段53之3號2樓",
+    "x座標":303296.729
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":57,
+    "區":"中山區",
+    "地址":"南京東路一段35號1、2樓",
+    "x座標":303167.013
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":58,
+    "區":"中山區",
+    "地址":"松江路25巷9號B1",
+    "x座標":303901.825
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":59,
+    "區":"中正區",
+    "地址":"羅斯福路4段92號4樓",
+    "x座標":303998.407
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":60,
+    "區":"中正區",
+    "地址":"林森北路5巷4號",
+    "x座標":302854.008
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":61,
+    "區":"中正區",
+    "地址":"三元街131號4樓",
+    "x座標":301567.949
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":62,
+    "區":"中正區",
+    "地址":"濟南路2段46號3樓",
+    "x座標":303572.205
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":63,
+    "區":"中正區",
+    "地址":"臨沂街10巷1號",
+    "x座標":303505.278
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":64,
+    "區":"中正區",
+    "地址":"水源路臨28號",
+    "x座標":302766.036
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":65,
+    "區":"中正區",
+    "地址":"博愛路163號",
+    "x座標":301563.785
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":66,
+    "區":"大同區",
+    "地址":"重慶北路3段347號2樓之2",
+    "x座標":301859.593
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":67,
+    "區":"大同區",
+    "地址":"萬全街42號1,2樓",
+    "x座標":302465.502
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":68,
+    "區":"大同區",
+    "地址":"保安街47之1號3樓",
+    "x座標":301664.444
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":69,
+    "區":"大同區",
+    "地址":"迪化街1段374號2樓",
+    "x座標":301374.262
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":70,
+    "區":"大同區",
+    "地址":"重慶北路3段313巷25號",
+    "x座標":301942.343
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":71,
+    "區":"大同區",
+    "地址":"敦煌路臨151之1號",
+    "x座標":301616.712
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":72,
+    "區":"大同區",
+    "地址":"敦煌路臨160之2號",
+    "x座標":301728.94
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":73,
+    "區":"大同區",
+    "地址":"重慶北路3段76號4樓",
+    "x座標":301799.72
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":74,
+    "區":"萬華區",
+    "地址":"西園路2段臨370之1號",
+    "x座標":299609.417
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":75,
+    "區":"萬華區",
+    "地址":"環河南路2段102號3樓",
+    "x座標":299998.498
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":76,
+    "區":"萬華區",
+    "地址":"興寧街2號地下室及3樓",
+    "x座標":300660.445
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":77,
+    "區":"萬華區",
+    "地址":"廣州街152巷10號2,3樓",
+    "x座標":300507.697
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":78,
+    "區":"萬華區",
+    "地址":"長順街臨127號",
+    "x座標":299349.402
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":79,
+    "區":"萬華區",
+    "地址":"萬大路臨614之1號",
+    "x座標":300055.201
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":80,
+    "區":"萬華區",
+    "地址":"西園路2段臨382之10號",
+    "x座標":299590.896
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":81,
+    "區":"萬華區",
+    "地址":"東園街19號2樓",
+    "x座標":300021.716
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":82,
+    "區":"萬華區",
+    "地址":"昆明街284號3樓",
+    "x座標":300846.128
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":83,
+    "區":"萬華區",
+    "地址":"環河南路2段臨5之1號",
+    "x座標":300237.585
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":84,
+    "區":"萬華區",
+    "地址":"萬大路411號2樓",
+    "x座標":300366.653
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":85,
+    "區":"萬華區",
+    "地址":"興義街23、25號1,2樓",
+    "x座標":299711.112
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":86,
+    "區":"萬華區",
+    "地址":"西園路2段9號1,2樓",
+    "x座標":300273.067
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":87,
+    "區":"萬華區",
+    "地址":"西寧南路14之3號2,3樓",
+    "x座標":301154.165
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":88,
+    "區":"萬華區",
+    "地址":"艋舺大道101號3樓",
+    "x座標":300605.37
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":89,
+    "區":"萬華區",
+    "地址":"青年路186-1號1樓",
+    "x座標":300814.452
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":90,
+    "區":"文山區",
+    "地址":"木新路3段310巷4號2樓之1",
+    "x座標":306254.965
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":91,
+    "區":"文山區",
+    "地址":"木柵路1段177號3樓之1",
+    "x座標":305623.174
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":92,
+    "區":"文山區",
+    "地址":"忠順街2段22號2樓",
+    "x座標":306853.421
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":93,
+    "區":"文山區",
+    "地址":"羅斯福路6段393號6~9樓",
+    "x座標":304586.393
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":94,
+    "區":"文山區",
+    "地址":"萬美街1段51號3樓",
+    "x座標":307382.347
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":95,
+    "區":"文山區",
+    "地址":"萬隆街47之12號B1",
+    "x座標":304114.721
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":96,
+    "區":"文山區",
+    "地址":"萬壽路27號7樓",
+    "x座標":308198.865
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":97,
+    "區":"文山區",
+    "地址":"一壽街22號9~10樓",
+    "x座標":306159.953
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":98,
+    "區":"文山區",
+    "地址":"恆光街45號7~8樓",
+    "x座標":307272.87
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":99,
+    "區":"文山區",
+    "地址":"興隆路2段97號4樓",
+    "x座標":305260.483
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":100,
+    "區":"文山區",
+    "地址":"興隆路2段160號10樓",
+    "x座標":305658.899
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":101,
+    "區":"文山區",
+    "地址":"興隆路2段95巷8號7~9樓",
+    "x座標":305202.596
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":102,
+    "區":"南港區",
+    "地址":"東明街99號2樓",
+    "x座標":310626.603
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":103,
+    "區":"南港區",
+    "地址":"成功路一段99號",
+    "x座標":309822.106
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":104,
+    "區":"南港區",
+    "地址":"福德街443號1樓",
+    "x座標":309806.803
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":105,
+    "區":"南港區",
+    "地址":"同德路100號3樓",
+    "x座標":309205.593
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":106,
+    "區":"南港區",
+    "地址":"市民大道八段367號2樓",
+    "x座標":311338.992
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":107,
+    "區":"南港區",
+    "地址":"興東街1號2樓",
+    "x座標":311858.788
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":108,
+    "區":"南港區",
+    "地址":"研究院路2段70巷12號2樓",
+    "x座標":312010.122
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":109,
+    "區":"南港區",
+    "地址":"舊莊街1段91巷11號",
+    "x座標":312507.886
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":110,
+    "區":"南港區",
+    "地址":"研究院路3段68巷9號2樓",
+    "x座標":311991.576
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":111,
+    "區":"內湖區",
+    "地址":"內湖路1段285號7樓",
+    "x座標":307154.917
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":112,
+    "區":"內湖區",
+    "地址":"內湖路1段552號",
+    "x座標":308204.88
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":113,
+    "區":"內湖區",
+    "地址":"環山路2段68巷14號1.2樓",
+    "x座標":308008.996
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":114,
+    "區":"內湖區",
+    "地址":"內湖路2段346號",
+    "x座標":309492.699
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":115,
+    "區":"內湖區",
+    "地址":"康寧路1段20號",
+    "x座標":309654.31
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":116,
+    "區":"內湖區",
+    "地址":"金龍路136-1號2樓",
+    "x座標":309513.6
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":117,
+    "區":"內湖區",
+    "地址":"內湖路3段60巷6號地下室",
+    "x座標":309723.069
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":118,
+    "區":"內湖區",
+    "地址":"星雲街161巷3號",
+    "x座標":310134.168
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":119,
+    "區":"內湖區",
+    "地址":"文德路66巷38弄14號",
+    "x座標":308625.229
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":120,
+    "區":"內湖區",
+    "地址":"五分街6號5樓",
+    "x座標":311802.203
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":121,
+    "區":"內湖區",
+    "地址":"康樂街150號6樓之1",
+    "x座標":312470.194
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":122,
+    "區":"內湖區",
+    "地址":"新明路324號3、4樓",
+    "x座標":308680.82
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":123,
+    "區":"內湖區",
+    "地址":"行善路25巷13號2樓",
+    "x座標":308221.736
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":124,
+    "區":"內湖區",
+    "地址":"成功路2段320巷19號3樓",
+    "x座標":309517.434
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":125,
+    "區":"內湖區",
+    "地址":"內湖路2段335巷21號",
+    "x座標":309688.738
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":126,
+    "區":"內湖區",
+    "地址":"大湖山莊117號4樓",
+    "x座標":310702.0058
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":127,
+    "區":"士林區",
+    "地址":"中山北路7段154巷6號4樓",
+    "x座標":303742.324
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":128,
+    "區":"士林區",
+    "地址":"忠誠路2段53巷7號10樓",
+    "x座標":303689.933
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":129,
+    "區":"士林區",
+    "地址":"承德路4段5之1號",
+    "x座標":302629.435
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":130,
+    "區":"士林區",
+    "地址":"延平北路5段136巷1號10樓",
+    "x座標":301521.124
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":131,
+    "區":"士林區",
+    "地址":"福港街151號10樓",
+    "x座標":302255.587
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":132,
+    "區":"士林區",
+    "地址":"中正路589號",
+    "x座標":301516.688
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":133,
+    "區":"士林區",
+    "地址":"中正路632之1號",
+    "x座標":301290.085
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":134,
+    "區":"士林區",
+    "地址":"雨聲街68號",
+    "x座標":303328.419
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":135,
+    "區":"士林區",
+    "地址":"延平北路9段80號",
+    "x座標":297877.854
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":136,
+    "區":"士林區",
+    "地址":"美崙街190號",
+    "x座標":302195.08
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":137,
+    "區":"士林區",
+    "地址":"至善路2段286號",
+    "x座標":305698.978
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":138,
+    "區":"士林區",
+    "地址":"文昌路166之1號",
+    "x座標":302496.39
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":139,
+    "區":"士林區",
+    "地址":"德行西路30號",
+    "x座標":302795.862
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":140,
+    "區":"士林區",
+    "地址":"永平街2號",
+    "x座標":300995.966
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":141,
+    "區":"士林區",
+    "地址":"文昌路臨211之1號",
+    "x座標":302475.946
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":142,
+    "區":"士林區",
+    "地址":"通河街179巷2號3樓",
+    "x座標":302405.721
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":143,
+    "區":"士林區",
+    "地址":"中正路187巷26號",
+    "x座標":303197.747
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":144,
+    "區":"士林區",
+    "地址":"延平北路7段114號2樓",
+    "x座標":299868.937
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":145,
+    "區":"士林區",
+    "地址":"菁山路34巷1號",
+    "x座標":305195.438
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":146,
+    "區":"士林區",
+    "地址":"中山北路5段773之1號",
+    "x座標":303136.395
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":147,
+    "區":"士林區",
+    "地址":"延平北路5段1巷40號",
+    "x座標":301475.522
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":148,
+    "區":"士林區",
+    "地址":"平菁街106巷18號",
+    "x座標":307960.365
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":149,
+    "區":"士林區",
+    "地址":"中正路104巷2號",
+    "x座標":303392.044
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":150,
+    "區":"北投區",
+    "地址":"公館路198號4樓",
+    "x座標":301145.157
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":151,
+    "區":"北投區",
+    "地址":"中和街534號9、10樓",
+    "x座標":299727.844
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":152,
+    "區":"北投區",
+    "地址":"石牌路二段115號9、10樓",
+    "x座標":302195.322
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":153,
+    "區":"北投區",
+    "地址":"立農街1段366號4樓",
+    "x座標":301268.154
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":154,
+    "區":"北投區",
+    "地址":"大度路3段301巷1號1樓",
+    "x座標":297042.793
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":155,
+    "區":"北投區",
+    "地址":"自強街61巷6號2樓",
+    "x座標":301828.393
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":156,
+    "區":"北投區",
+    "地址":"文化三路3號1樓、4樓、5樓",
+    "x座標":300122.779
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":157,
+    "區":"北投區",
+    "地址":"致遠二路61巷2之2號2樓",
+    "x座標":301596.582
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":158,
+    "區":"北投區",
+    "地址":"崇仰1路7號1樓、2樓",
+    "x座標":301588.9737
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":159,
+    "區":"北投區",
+    "地址":"中央北路4段538號1、2樓",
+    "x座標":297146.211
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":160,
+    "區":"北投區",
+    "地址":"湖底路4之13號",
+    "x座標":303965.628
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":161,
+    "區":"北投區",
+    "地址":"竹子湖路57之7號",
+    "x座標":303789.558
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "編號":162,
+    "區":"北投區",
+    "地址":"福美街207號、209號1樓",
+    "x座標":300934.12
+    }
+  }
+]
+}
