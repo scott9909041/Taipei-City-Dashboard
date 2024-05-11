@@ -80,6 +80,40 @@ func createTempComponentDB() *gorm.DB {
 		Group("components.id, component_charts.*")
 }
 
+func CreateComponent(index string, name string, historyConfig json.RawMessage, mapConfigIDs pq.Int64Array, mapFilter json.RawMessage, timeFrom string, timeTo string, updateFreq *int64, updateFreqUnit string, source string, shortDesc string, longDesc string, useCase string, links pq.StringArray, contributors pq.StringArray, queryType string) (component Component, err error) {
+	if queryType == "" {
+		queryType = "map_legend"
+	}
+	component = Component{Index: index, Name: name, HistoryConfig: historyConfig, MapConfigIDs: mapConfigIDs, MapFilter: mapFilter, TimeFrom: timeFrom, TimeTo: timeTo, UpdateFreq: updateFreq, UpdateFreqUnit: updateFreqUnit, Source: source, ShortDesc: shortDesc, LongDesc: longDesc, UseCase: useCase, Links: links, Contributors: contributors, CreatedAt: time.Now(), UpdatedAt: time.Now(), QueryType: queryType, QueryChart: string("select * from "+index+" where index = '-1'")}
+
+	err = DBManager.Create(&component).Error
+	if err != nil {
+		return component, err
+	}
+
+	err = DBManager.Where("id = ?", component.ID).First(&component).Error
+	if err != nil {
+		return component, err
+	}
+	return component, nil
+}
+
+func CreateComponentChartConfig(index string, color pq.StringArray, types pq.StringArray, unit string) (chartConfig ComponentChart, err error) {
+	chartConfig = ComponentChart{Index: index, Color: color, Types: types, Unit: unit}
+
+	err = DBManager.Create(&chartConfig).Error
+	if err != nil {
+		return chartConfig, err
+	}
+
+	err = DBManager.Where("index = ?", chartConfig.Index).First(&chartConfig).Error
+	if err != nil {
+		return chartConfig, err
+	}
+	return chartConfig, nil
+}
+
+
 func GetAllComponents(pageSize int, pageNum int, sort string, order string, filterBy string, filterMode string, filterValue string, searchByIndex string, searchByName string) (components []Component, totalComponents int64, resultNum int64, err error) {
 	tempDB := createTempComponentDB()
 

@@ -39,6 +39,42 @@ type componentQuery struct {
 	SearchByName  string `form:"searchbyname"`
 }
 
+/**
+CreateComponent creates a new component in the database.
+POST /api/v1/component
+*/
+func CreateComponent(c *gin.Context) {
+	var component models.Component
+
+	// Bind the request body to the component and make sure it's valid
+	err := c.ShouldBindJSON(&component)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"status": "error", "message": err.Error()})
+		return
+	}
+
+	// Create the component
+	component, err = models.CreateComponent(component.Index, component.Name, component.HistoryConfig, component.MapConfigIDs, component.MapFilter , component.TimeFrom, component.TimeTo, component.UpdateFreq, component.UpdateFreqUnit, component.Source, component.ShortDesc, component.LongDesc, component.UseCase, component.Links, component.Contributors, component.QueryType)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"status": "error", "message": err.Error()})
+		return
+	}
+
+	// Create blank chart config for the component
+	_, err = models.CreateComponentChartConfig(component.Index, []string{}, []string{"MapLegend"}, "個")
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"status": "error", "message": err.Error()})
+		return
+	}
+
+	// Return the component
+	c.JSON(http.StatusCreated, gin.H{"status": "success", "data": component})
+}
+
+/**
+GetAllComponents retrieves all public components from the database.
+GET /api/v1/component
+*/
 func GetAllComponents(c *gin.Context) {
 	// Get all query parameters from context
 	var query componentQuery
