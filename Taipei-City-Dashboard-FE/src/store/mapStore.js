@@ -113,6 +113,7 @@ export const useMapStore = defineStore("map", {
 					let marker = new mapboxGl.Marker()
 						.setLngLat(coordinates)
 						.addTo(this.map);
+					marker.addClassName("test");
 				})
 				.on("idle", () => {
 					this.loadingLayers = this.loadingLayers.filter(
