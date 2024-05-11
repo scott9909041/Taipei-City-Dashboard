@@ -16,6 +16,7 @@ type ViewPoint struct {
 	Zoom    float32   `json:"zoom"`
 	Pitch   float32   `json:"pitch"`
 	Bearing float32   `json:"bearing"`
+	Name    string    `json:"name"`
 }
 func CreateViewPoint(c *gin.Context) {
 	var viewPoint ViewPoint
@@ -25,7 +26,7 @@ func CreateViewPoint(c *gin.Context) {
 		return
 	}
 
-	err:= models.CreateViewPoint(viewPoint.UserID, convertFloat32ArrayToString(viewPoint.Center), viewPoint.Zoom, viewPoint.Pitch, viewPoint.Bearing)
+	err:= models.CreateViewPoint(viewPoint.UserID, convertFloat32ArrayToString(viewPoint.Center), viewPoint.Zoom, viewPoint.Pitch, viewPoint.Bearing, viewPoint.Name)
 	if  err!= nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return

@@ -7,9 +7,10 @@ type ViewPoint struct {
 	Zoom    float32 `json:"zoom" gorm:"column:zoom"`
 	Pitch   float32 `json:"pitch" gorm:"column:pitch"`
 	Bearing float32 `json:"bearing" gorm:"column:bearing"`
+	Name    string  `json:"name" gorm:"column:name"`
 }
 
-func CreateViewPoint(user_id int, center string, zoom float32, pitch float32, bearing float32) error {
+func CreateViewPoint(user_id int, center string, zoom float32, pitch float32, bearing float32, name string) error {
 	// 創建 ViewPoint 對象
 	viewpoint := ViewPoint{
 		UserID:  user_id,
@@ -17,6 +18,7 @@ func CreateViewPoint(user_id int, center string, zoom float32, pitch float32, be
 		Zoom:    zoom,
 		Pitch:   pitch,
 		Bearing: bearing,
+		Name:    name,
 	}
 
 	// 將 ViewPoint 對象插入到數據庫中
