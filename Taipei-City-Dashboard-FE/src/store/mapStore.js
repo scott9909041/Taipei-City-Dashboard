@@ -80,19 +80,27 @@ export const useMapStore = defineStore("map", {
 		loadingLayers: [],
 		markers: [],
 		viewPoints: [],
+		marker: null,
+		tempMarkerCoordinates: null,
 	}),
 	getters: {},
 	actions: {
+		setTempPin(payload) {
+			console.log(123);
+			this.marker = payload;
+		},
 		/* Initialize Mapbox */
 		// 1. Creates the mapbox instance and passes in initial configs
 		initializeMapBox() {
 			this.map = null;
+			this.marker = null;
 			const MAPBOXTOKEN = import.meta.env.VITE_MAPBOXTOKEN;
 			mapboxGl.accessToken = MAPBOXTOKEN;
 			this.map = new mapboxGl.Map({
 				...MapObjectConfig,
 				style: mapStyle,
 			});
+			this.marker = new mapboxGl.Marker();
 			this.map.addControl(new mapboxGl.NavigationControl());
 			this.map.doubleClickZoom.disable();
 			this.map
@@ -107,13 +115,13 @@ export const useMapStore = defineStore("map", {
 				})
 				.on("dblclick", (event) => {
 					// mapboxgl-marker
-					console.log("event: ", event);
-					let coordinates = event.lngLat;
+					// console.log("event: ", event);
 
-					let marker = new mapboxGl.Marker()
-						.setLngLat(coordinates)
-						.addTo(this.map);
-					marker.addClassName("test");
+					let coordinates = event.lngLat;
+					// console.log(this.marker);
+					this.tempMarkerCoordinates = coordinates;
+					console.log("coordinates: ", coordinates);
+					this.marker.setLngLat(coordinates).addTo(this.map);
 				})
 				.on("idle", () => {
 					this.loadingLayers = this.loadingLayers.filter(
@@ -622,6 +630,27 @@ export const useMapStore = defineStore("map", {
 			});
 			this.removePopup();
 		},
+		async addMarker() {
+			console.log(
+				"this.tempMarkerCoordinates: ",
+				this.tempMarkerCoordinates
+			);
+			const authStore = useAuthStore();
+			const { user } = storeToRefs(authStore);
+			const res = await http.post(`/view-point/`, {
+				user_id: user.value.user_id,
+				center_x: this.tempMarkerCoordinates.lat,
+				center_y: this.tempMarkerCoordinates.lng,
+				zoom: 0,
+				pitch: 0,
+				bearing: 0,
+				name: "",
+				point_type: "pin",
+			});
+			console.log("res: ", res);
+			const marker = new mapboxGl.Marker();
+			marker.setLngLat(this.tempMarkerCoordinates).addTo(this.map);
+		},
 		async addViewPoint(viewPointArray) {
 			// console.log("viewPointArray: ", viewPointArray);
 
@@ -660,17 +689,28 @@ export const useMapStore = defineStore("map", {
 			);
 			dialogStore.showNotification("success", "視角刪除成功");
 		},
-		addMarker(coordinates) {
-			const marker = new mapboxGl.Marker()
-				.setLngLat(coordinates)
-				.addTo(this.map);
-			this.markers.push(marker);
-		},
+		// addMarker(coordinates) {
+		// 	const marker = new mapboxGl.Marker()
+		// 		.setLngLat(coordinates)
+		// 		.addTo(this.map);
+		// 	this.markers.push(marker);
+		// },
 		async fetchViewPoints() {
 			const authStore = useAuthStore();
 			const { user } = storeToRefs(authStore);
 			const res = await http.get(`/view-point/${user.value.user_id}`);
 			this.viewPoints = res.data;
+			this.viewPoints.forEach((item) => {
+				if (item.point_type === "pin") {
+					const marker = new mapboxGl.Marker();
+					console.log("item.center_x: ", item.center_x);
+					console.log("item.center_y: ", item.center_y);
+					marker
+						.setLngLat({ lng: item.center_y, lat: item.center_x })
+						.addTo(this.map);
+				}
+				// {lng: 121.53824766946929, lat: 25.046765109170664}
+			});
 		},
 		/* Popup Related Functions */
 		// 1. Adds a popup when the user clicks on a item. The event will be passed in.

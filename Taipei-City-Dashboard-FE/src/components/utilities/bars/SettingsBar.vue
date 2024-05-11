@@ -5,12 +5,15 @@
 <script setup>
 import { useContentStore } from "../../../store/contentStore";
 import { useDialogStore } from "../../../store/dialogStore";
-
+import { storeToRefs } from "pinia";
 import MobileNavigation from "../../dialogs/MobileNavigation.vue";
 import AddEditDashboards from "../../dialogs/AddEditDashboards.vue";
-
+import { useMapStore } from "../../../store/mapStore";
+import AddPin from "../../dialogs/AddPin.vue";
 const contentStore = useContentStore();
 const dialogStore = useDialogStore();
+const mapStore = useMapStore();
+const { tempMarkerCoordinates } = storeToRefs(mapStore);
 
 function handleOpenSettings() {
 	contentStore.editDashboard = JSON.parse(
@@ -22,38 +25,61 @@ function handleOpenSettings() {
 </script>
 
 <template>
-  <div class="settingsbar">
-    <div class="settingsbar-title">
-      <span>{{ contentStore.currentDashboard.icon }}</span>
-      <h2>{{ contentStore.currentDashboard.name }}</h2>
-      <button
-        class="show-if-mobile"
-        @click="dialogStore.showDialog('mobileNavigation')"
-      >
-        <span class="settingsbar-title-navigation">arrow_drop_down_circle</span>
-      </button>
-      <MobileNavigation />
-      <div
-        v-if="
-          contentStore.personalDashboards
-            .map((el) => el.index)
-            .includes(contentStore.currentDashboard.index) &&
-            contentStore.currentDashboard.icon !== 'favorite'
-        "
-        class="settingsbar-settings hide-if-mobile"
-      >
-        <button @click="handleOpenSettings">
-          <span>settings</span>
-          <p>設定</p>
-        </button>
-      </div>
-      <AddEditDashboards />
-    </div>
-  </div>
+	<div class="settingsbar">
+		<div class="settingsbar-title">
+			<span>{{ contentStore.currentDashboard.icon }}</span>
+			<h2>{{ contentStore.currentDashboard.name }}</h2>
+			<button
+				class="show-if-mobile"
+				@click="dialogStore.showDialog('mobileNavigation')"
+			>
+				<span class="settingsbar-title-navigation"
+					>arrow_drop_down_circle</span
+				>
+			</button>
+			<MobileNavigation />
+			<div
+				v-if="
+					contentStore.personalDashboards
+						.map((el) => el.index)
+						.includes(contentStore.currentDashboard.index) &&
+					contentStore.currentDashboard.icon !== 'favorite'
+				"
+				class="settingsbar-settings hide-if-mobile"
+			>
+				<button @click="handleOpenSettings">
+					<span>settings</span>
+					<p>設定</p>
+				</button>
+			</div>
+			<AddEditDashboards />
+		</div>
+		<!-- tempPin: {{ tempPin }} <br />
+		map: {{ map }} <br /> -->
+
+		<button
+			class="add-pin"
+			:disable="tempMarkerCoordinates === null"
+			@click="dialogStore.showDialog('addPin')"
+		>
+			建立地標
+		</button>
+	</div>
+	<AddPin />
 </template>
 
 <style scoped lang="scss">
 .settingsbar {
+	.add-pin {
+		cursor: pointer;
+		padding: 0px 4px;
+		border-radius: 4px;
+		background-color: rgb(63, 177, 206);
+		// &:disabled {
+		// 	background-color: rgb(20, 58, 67);
+		// }
+	}
+
 	width: calc(100% - 2 * var(--font-m));
 	min-height: 1.6rem;
 	display: flex;

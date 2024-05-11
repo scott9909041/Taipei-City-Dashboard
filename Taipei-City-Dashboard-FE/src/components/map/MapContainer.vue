@@ -126,7 +126,10 @@ onMounted(() => {
 				</div>
 			</div>
 			<div v-for="(item, index) in mapStore.viewPoints" :key="`index`">
-				<button @click="mapStore.easeToLocation(item)">
+				<button
+					v-if="item.point_type === 'view'"
+					@click="mapStore.easeToLocation(item)"
+				>
 					{{ item["name"] }}
 				</button>
 				<div
