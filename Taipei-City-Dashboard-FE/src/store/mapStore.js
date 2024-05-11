@@ -57,10 +57,10 @@ const geojson = {
 	],
 };
 function parseNum(str = "") {
-    str = str.replace("{", "");
-    str = str.replace("}", "");
-    const arr = str.split(",");
-    return [+arr[0], +arr[1]];
+	str = str.replace("{", "");
+	str = str.replace("}", "");
+	const arr = str.split(",");
+	return [+arr[0], +arr[1]];
 }
 export const useMapStore = defineStore("map", {
 	state: () => ({
@@ -104,6 +104,15 @@ export const useMapStore = defineStore("map", {
 						this.popup = null;
 					}
 					this.addPopup(event);
+				})
+				.on("dblclick", (event) => {
+					// mapboxgl-marker
+					console.log("event: ", event);
+					let coordinates = event.lngLat;
+
+					let marker = new mapboxGl.Marker()
+						.setLngLat(coordinates)
+						.addTo(this.map);
 				})
 				.on("idle", () => {
 					this.loadingLayers = this.loadingLayers.filter(
@@ -613,21 +622,42 @@ export const useMapStore = defineStore("map", {
 			this.removePopup();
 		},
 		async addViewPoint(viewPointArray) {
-			this.viewPoints.push(viewPointArray);
+			// console.log("viewPointArray: ", viewPointArray);
+
 			const authStore = useAuthStore();
 			const { user } = storeToRefs(authStore);
 			const res = await http.post(`/view-point/`, {
 				user_id: user.value.user_id,
-				center: viewPointArray[0],
+				center_x: viewPointArray[0][0],
+				center_y: viewPointArray[0][1],
 				zoom: viewPointArray[1],
 				pitch: viewPointArray[2],
 				bearing: viewPointArray[3],
 				name: viewPointArray[4],
+				point_type: "view",
 			});
-			console.log("viewPointArray[4]: ", viewPointArray[4]);
+			console.log("res: ", res);
+			// {
+			// 	"id": 23,
+			// 	"user_id": 1,
+			// 	"center_x": 121.536606,
+			// 	"center_y": 25.044807,
+			// 	"zoom": 12.5,
+			// 	"pitch": 0,
+			// 	"bearing": 0,
+			// 	"name": "ss",
+			// 	"point_type": ""
+			// }
+			this.viewPoints.push(res.data.data);
 		},
-		async removeViewPoint() {
-			// const res = await http.delete(`/view-point/${user.value.user_id}`);
+		async removeViewPoint(item) {
+			const res = await http.delete(`/view-point/${item.id}`);
+			const dialogStore = useDialogStore();
+
+			this.viewPoints = this.viewPoints.filter(
+				(viewPoint) => viewPoint.id !== item.id
+			);
+			dialogStore.showNotification("success", "視角刪除成功");
 		},
 		addMarker(coordinates) {
 			const marker = new mapboxGl.Marker()
@@ -715,12 +745,12 @@ export const useMapStore = defineStore("map", {
 			// console.log("test: ", location_array.center[0]);
 			// location_array.center;
 			if (location_array?.zoom) {
-				console.log(
-					"parseNum(location_array.center): ",
-					location_array.center
-				);
+				// console.log(
+				// 	"parseNum(location_array.center): ",
+				// 	location_array.center
+				// );
 				this.map.easeTo({
-					center: parseNum(location_array.center),
+					center: [location_array.center_x, location_array.center_y],
 					zoom: location_array.zoom,
 					duration: 4000,
 					pitch: location_array.pitch,
@@ -755,9 +785,9 @@ export const useMapStore = defineStore("map", {
 				}, 200);
 			}
 		},
-		removeViewPoint(index) {
-			this.viewPoints.splice(index, 1);
-		},
+		// removeViewPoint(index) {
+		// 	this.viewPoints.splice(index, 1);
+		// },
 		/* Map Filtering */
 		// 1. Add a filter based on a each map layer's properties (byParam)
 		filterByParam(map_filter, map_configs, xParam, yParam) {
