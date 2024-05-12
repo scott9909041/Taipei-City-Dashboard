@@ -87,8 +87,7 @@ function handleOpenSettings(component) {
 }
 
 const showAdminAddComponent = () => {
-	console.log("showAdminAddComponent");
-	dialogStore.showDialog('adminAddComponent')
+	dialogStore.showDialog("adminAddComponent");
 };
 
 onMounted(() => {

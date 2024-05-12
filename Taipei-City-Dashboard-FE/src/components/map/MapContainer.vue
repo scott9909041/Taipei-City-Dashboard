@@ -19,9 +19,6 @@ const contentStore = useContentStore();
 const { dialogs } = storeToRefs(dialogStore);
 const districtLayer = ref(false);
 const villageLayer = ref(false);
-const test = () => {
-	console.log("dialogs: ", dialogs);
-};
 const newSavedLocation = ref("");
 
 function handleSubmitNewLocation() {

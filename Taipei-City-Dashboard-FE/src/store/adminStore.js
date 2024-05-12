@@ -223,10 +223,6 @@ export const useAdminStore = defineStore("admin", {
 			const map_config = JSON.parse(
 				JSON.stringify(this.currentComponent.map_config)
 			);
-			console.log(
-				"this.currentComponent.delete_map_config",
-				this.currentComponent.delete_map_config
-			);
 			const delete_map_config = this.currentComponent.delete_map_config
 				? JSON.parse(
 						JSON.stringify(this.currentComponent.delete_map_config)
