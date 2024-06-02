@@ -39,7 +39,6 @@ export const useAuthStore = defineStore("auth", {
 		async initialChecks() {
 			// Check if the user is using a mobile device
 			this.checkIfMobile();
-			
 
 			// Check if the user is logged in
 			if (localStorage.getItem("token")) {
@@ -49,10 +48,7 @@ export const useAuthStore = defineStore("auth", {
 				}
 				const response = await http.get("/user/me");
 				this.user = response.data.user;
-				if (this.user) {
-					const mapStore = useMapStore();
-					mapStore.fetchViewPoints();
-				}
+
 				this.editUser = JSON.parse(JSON.stringify(this.user));
 			}
 		},

@@ -11,12 +11,16 @@ import MobileNavigation from "../../dialogs/MobileNavigation.vue";
 import AddEditDashboards from "../../dialogs/AddEditDashboards.vue";
 import { useMapStore } from "../../../store/mapStore";
 import AddPin from "../../dialogs/AddPin.vue";
+import { useRoute } from "vue-router";
+import { computed } from "vue";
 const contentStore = useContentStore();
 const dialogStore = useDialogStore();
 const mapStore = useMapStore();
 const authStore = useAuthStore();
 const { tempMarkerCoordinates } = storeToRefs(mapStore);
 const { user } = storeToRefs(authStore);
+const route = useRoute();
+const isCurrentPageMapView = computed(() => route.name === "mapview");
 
 function handleOpenSettings() {
 	contentStore.editDashboard = JSON.parse(
@@ -62,18 +66,21 @@ function handleOpenSettings() {
 		<!-- {{ !tempMarkerCoordinates?.lat }} -->
 		<!-- {{ user }} -->
 		<button
-			v-if="user?.user_id"
+			v-if="user?.user_id && isCurrentPageMapView"
 			class="add-pin"
 			:disabled="!tempMarkerCoordinates?.lat"
 			@click="dialogStore.showDialog('addPin')"
 			:style="{
 				background: !tempMarkerCoordinates?.lat
 					? 'rgb(20, 58, 67)'
-					: 'rgb(63, 177, 206)',
+					: 'var(--color-highlight)',
 				cursor: !tempMarkerCoordinates?.lat ? 'not-allowed' : 'pointer',
 			}"
 		>
-			建立地標
+			<template v-if="!tempMarkerCoordinates?.lat"
+				>雙擊已建立地標</template
+			>
+			<template v-else="!tempMarkerCoordinates?.lat">建立地標</template>
 		</button>
 	</div>
 	<AddPin />
