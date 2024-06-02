@@ -620,16 +620,18 @@ export const useMapStore = defineStore("map", {
 
 			const authStore = useAuthStore();
 			const { user } = storeToRefs(authStore);
-			const res = await http.post(`/view-point/`, {
-				user_id: user.value.user_id,
-				center_x: this.tempMarkerCoordinates.lat,
-				center_y: this.tempMarkerCoordinates.lng,
-				zoom: 0,
-				pitch: 0,
-				bearing: 0,
-				name: name,
-				point_type: "pin",
-			});
+			const res = await http.post(
+				`user/${user.value.user_id}/viewpoint`,
+				{
+					center_x: this.tempMarkerCoordinates.lat,
+					center_y: this.tempMarkerCoordinates.lng,
+					zoom: 0,
+					pitch: 0,
+					bearing: 0,
+					name: name,
+					point_type: "pin",
+				}
+			);
 			const popup = new mapboxGl.Popup({ closeButton: false })
 				.setHTML(`<div class="popup-for-pin">${name} <button id=delete-${res.data.data.id} class="delete-pin"}">
 			X
@@ -640,7 +642,7 @@ export const useMapStore = defineStore("map", {
 					`delete-${res.data.data.id}`
 				);
 				el.addEventListener("click", async () => {
-					await http.delete(`/view-point/${res.data.data.id}`);
+					await http.delete(`user/viewpoint/${res.data.data.id}`);
 					useDialogStore().showNotification(
 						"success",
 						"地標刪除成功"
@@ -657,16 +659,18 @@ export const useMapStore = defineStore("map", {
 		async addViewPoint(viewPointArray) {
 			const authStore = useAuthStore();
 			const { user } = storeToRefs(authStore);
-			const res = await http.post(`/view-point/`, {
-				user_id: user.value.user_id,
-				center_x: viewPointArray[0][0],
-				center_y: viewPointArray[0][1],
-				zoom: viewPointArray[1],
-				pitch: viewPointArray[2],
-				bearing: viewPointArray[3],
-				name: viewPointArray[4],
-				point_type: "view",
-			});
+			const res = await http.post(
+				`user/${user.value.user_id}/viewpoint`,
+				{
+					center_x: viewPointArray[0][0],
+					center_y: viewPointArray[0][1],
+					zoom: viewPointArray[1],
+					pitch: viewPointArray[2],
+					bearing: viewPointArray[3],
+					name: viewPointArray[4],
+					point_type: "view",
+				}
+			);
 			// {
 			// 	"id": 23,
 			// 	"user_id": 1,
@@ -681,7 +685,7 @@ export const useMapStore = defineStore("map", {
 			this.viewPoints.push(res.data.data);
 		},
 		async removeViewPoint(item) {
-			const res = await http.delete(`/view-point/${item.id}`);
+			const res = await http.delete(`user/viewpoint/${item.id}`);
 			const dialogStore = useDialogStore();
 
 			this.viewPoints = this.viewPoints.filter(
@@ -698,7 +702,7 @@ export const useMapStore = defineStore("map", {
 		async fetchViewPoints() {
 			const authStore = useAuthStore();
 			const { user } = storeToRefs(authStore);
-			const res = await http.get(`/view-point/${user.value.user_id}`);
+			const res = await http.get(`user/${user.value.user_id}/viewpoint/`);
 			this.viewPoints = res.data;
 			this.viewPoints.forEach((item) => {
 				if (item.point_type === "pin") {
@@ -713,7 +717,7 @@ export const useMapStore = defineStore("map", {
 						const el = document.getElementById(`delete-${item.id}`);
 						el.addEventListener("click", async () => {
 							const res = await http.delete(
-								`/view-point/${item.id}`
+								`user/viewpoint/${item.id}`
 							);
 							useDialogStore().showNotification(
 								"success",
