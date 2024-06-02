@@ -108,20 +108,23 @@ onMounted(() => {
 			>
 				返回預設
 			</button>
-			<div
-				v-for="(item, index) in mapStore.savedLocations"
-				:key="`${item[4]}-${index}`"
-			>
-				<button @click="mapStore.easeToLocation(item)">
-					{{ item[4] }}
-				</button>
+			<template v-if="!user?.user_id">
 				<div
-					class="mapcontainer-controls-delete"
-					@click="mapStore.removeSavedLocation(index)"
+					v-for="(item, index) in mapStore.savedLocations"
+					:key="`${item[4]}-${index}`"
 				>
-					<span>delete</span>
+					<button @click="mapStore.easeToLocation(item)">
+						{{ item[4] }}
+					</button>
+					<div
+						v-if="user?.user_id"
+						class="mapcontainer-controls-delete"
+						@click="mapStore.removeSavedLocation(index)"
+					>
+						<span>delete</span>
+					</div>
 				</div>
-			</div>
+			</template>
 			<div v-for="(item, index) in mapStore.viewPoints" :key="`index`">
 				<button
 					v-if="item.point_type === 'view'"
@@ -130,22 +133,18 @@ onMounted(() => {
 					{{ item["name"] }}
 				</button>
 				<div
+					v-if="user?.user_id"
 					class="mapcontainer-controls-delete"
 					@click="mapStore.removeViewPoint(item)"
 				>
 					<span>delete</span>
 				</div>
 			</div>
-			<!-- <input
-				v-if="mapStore.savedLocations.length < 10"
-				type="text"
-				placeholder="新增後按Enter"
-				v-model="newSavedLocation"
-				maxlength="6"
-				@focusout="newSavedLocation = ''"
-				@keypress.enter="handleSubmitNewLocation"
-			/> -->
-			<button @click="dialogStore.showDialog('addMarkToMap')">
+
+			<button
+				v-if="user?.user_id"
+				@click="dialogStore.showDialog('addMarkToMap')"
+			>
 				新增
 			</button>
 		</div>

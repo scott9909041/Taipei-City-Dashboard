@@ -702,7 +702,7 @@ export const useMapStore = defineStore("map", {
 			this.viewPoints = res.data;
 			this.viewPoints.forEach((item) => {
 				if (item.point_type === "pin") {
-					const marker = new mapboxGl.Marker();
+					const marker = new mapboxGl.Marker({ color: "#5a9cf8" });
 					const popup = new mapboxGl.Popup({
 						closeButton: false,
 					})

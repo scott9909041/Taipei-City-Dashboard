@@ -1,4 +1,3 @@
- 
 /* eslint-disable indent */
 
 // Developed by Taipei Urban Intelligence Center 2023-2024
@@ -7,14 +6,14 @@
 /*
 The contentStore calls APIs to get content info and stores it.
 */
-import { defineStore } from "pinia";
+import { defineStore, storeToRefs } from "pinia";
 import axios from "axios";
 import http from "../router/axios";
 import router from "../router/index";
 import { useDialogStore } from "./dialogStore";
 import { useAuthStore } from "./authStore";
 import { getComponentDataTimeframe } from "../assets/utilityFunctions/dataTimeframe";
-
+import { useMapStore } from "./mapStore";
 export const useContentStore = defineStore("content", {
 	state: () => ({
 		// Stores all dashboards data. (used in /dashboard, /mapview)
@@ -54,6 +53,11 @@ export const useContentStore = defineStore("content", {
 		/* Steps in adding content to the application (/dashboard or /mapview) */
 		// 1. Check the current path and execute actions based on the current path
 		setRouteParams(mode, index) {
+			const user = storeToRefs(useAuthStore());
+
+			if (this.currentDashboard.mode === "/mapview" && user?.user_id) {
+				useMapStore().fetchViewPoints();
+			}
 			this.currentDashboard.mode = mode;
 			// 1-1. Don't do anything if the path is the same
 			if (this.currentDashboard.index === index) {

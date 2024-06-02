@@ -71,7 +71,10 @@ const handleAddViewPoint = () => {
 <template>
 	<DialogContainer dialog="addMarkToMap" @on-close="handleClose">
 		<div class="login add-mark-to-map">
-			<h1 class="title">建立視角</h1>
+			<div class="title-box">
+				<h2 class="title">建立視角</h2>
+				<button @click.prevent="handleAddViewPoint">確認</button>
+			</div>
 
 			<div class="content">
 				<label for="view-point-name">視角名稱：</label>
@@ -84,45 +87,6 @@ const handleAddViewPoint = () => {
 					required
 				/>
 			</div>
-			<!-- <label for="marker-name">地標名稱：</label>
-			<input
-				v-model="params.name"
-				type="text"
-				id="marker-name"
-				name="marker-name"
-				placeholder="請輸入地標名稱"
-				required
-			/>
-			<label for="longitude">經度：</label>
-			<input
-				v-model="params.longitude"
-				type="number"
-				id="longitude"
-				name="longitude"
-				min="-180"
-				max="180"
-				step="any"
-				placeholder="請輸入有效的經度，範圍在-180到180之間"
-				required
-			/>
-
-			<label for="latitude">緯度：</label>
-			<input
-				v-model="params.latitude"
-				type="number"
-				id="latitude"
-				name="latitude"
-				min="-90"
-				max="90"
-				step="any"
-				placeholder="請輸入有效的緯度，範圍在-90到90之間"
-				required
-			/> -->
-			<!-- <div class="content">是否儲存當前視角？</div> -->
-
-			<div class="btn-box">
-				<button @click.prevent="handleAddViewPoint">確認</button>
-			</div>
 		</div>
 	</DialogContainer>
 </template>
@@ -130,24 +94,10 @@ const handleAddViewPoint = () => {
 <style scoped lang="scss">
 .login {
 	width: 300px;
-
 	p {
 		text-align: center;
 		color: var(--color-complement-text);
 	}
-
-	// p:last-child {
-	// 	background: linear-gradient(
-	// 		75deg,
-	// 		var(--color-complement-text),
-	// 		var(--color-highlight) 70%,
-	// 		var(--color-complement-text)
-	// 	);
-	// 	background-clip: text;
-	// 	-webkit-background-clip: text;
-	// 	-webkit-text-fill-color: transparent;
-	// 	animation: title-gradient 10s linear none infinite;
-	// }
 
 	a {
 		color: var(--color-highlight);
@@ -200,7 +150,20 @@ const handleAddViewPoint = () => {
 	}
 }
 .add-mark-to-map {
-	// text-align: center;
+	.title-box {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		button {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 2px 4px;
+			font-size: var(--font-ms);
+			background-color: var(--color-highlight);
+			border-radius: 5px;
+		}
+	}
 	label {
 		text-align: center;
 	}
@@ -215,27 +178,7 @@ const handleAddViewPoint = () => {
 		margin-bottom: 4px;
 		margin-top: 4px;
 	}
-	.btn-box {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-	button {
-		width: 80px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		margin: 12px 0;
-		padding: 6px;
-		font-size: var(--font-s);
-		background-color: #03b2c3;
-		border-radius: 100px;
 
-		img {
-			width: 1.5rem;
-			margin: 0 10px 0 0;
-		}
-	}
 	/* Chrome, Safari, Edge, Opera */
 	input::-webkit-outer-spin-button,
 	input::-webkit-inner-spin-button {
